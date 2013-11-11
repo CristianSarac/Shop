@@ -65,7 +65,7 @@ John Doe", client, Request.QueryString["date"], GenerateOrderedItems(orderList))
             smtp.Port = 587;
 			
 			//TODO: Fill in your own e-mail and password here!
-            smtp.Credentials = new NetworkCredential("dragan.raicici@gmail.com", "lancerevo9");
+            smtp.Credentials = new NetworkCredential("dragan.raicici@gmail.com", "");
             smtp.EnableSsl = true;
 
             smtp.Send(mail);

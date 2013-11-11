@@ -138,7 +138,7 @@ namespace Pages
                 sb.Append(String.Format(@"<tr>
                                             <td width = '50px'>{0} X </td>
                                             <td width = '200px'>{1} ({2})</td>
-                                            <td>{3}</td><td>€</td>
+                                            <td>{3}</td><td>$</td>
                                         </tr>", order.Amount, order.Product, order.Price, String.Format("{0:0.00}", totalRow)));
                 totalAmount = totalAmount + totalRow;
             }
@@ -146,7 +146,7 @@ namespace Pages
             //Generate row for Total Amount
             sb.Append(String.Format(@"<tr>
                                         <td><b>Total: </b></td>
-                                        <td><b>{0} € </b></td>
+                                        <td><b>{0} $ </b></td>
                                       </tr>", totalAmount));           
             sb.Append("</table>");
 

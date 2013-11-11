@@ -33,18 +33,18 @@
         </tr>
         <tr>
             <td style="width: 80px">
-                <b>Roast:</b>
+                <b>Artist:</b>
             </td>
             <td>
-                <asp:TextBox ID="txtRoast" runat="server" Width="300px"></asp:TextBox>
+                <asp:TextBox ID="txtArtist" runat="server" Width="300px"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td style="width: 80px">
-                <b>Country:</b>
+                <b>Size:</b>
             </td>
             <td>
-                <asp:TextBox ID="txtCountry" runat="server" Width="300px"></asp:TextBox>
+                <asp:TextBox ID="txtSize" runat="server" Width="300px"></asp:TextBox>
             </td>
         </tr>
         <tr>

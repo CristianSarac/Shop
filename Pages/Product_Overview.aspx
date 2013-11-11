@@ -20,9 +20,9 @@
                 <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
                 <asp:BoundField DataField="type" HeaderText="type" SortExpression="type" />
                 <asp:BoundField DataField="price" HeaderText="price" SortExpression="price" />
-                <asp:BoundField DataField="roast" HeaderText="roast" SortExpression="roast" />
-                <asp:BoundField DataField="country" HeaderText="country" 
-                    SortExpression="country" />
+                <asp:BoundField DataField="artist" HeaderText="artist" SortExpression="artist" />
+                <asp:BoundField DataField="size" HeaderText="size" 
+                    SortExpression="size" />
                 <asp:BoundField DataField="image" HeaderText="image" SortExpression="image" />
                 <asp:BoundField DataField="review" HeaderText="review" 
                     SortExpression="review" />
@@ -40,9 +40,9 @@
         <asp:SqlDataSource ID="sds_product" runat="server" 
             ConnectionString="<%$ ConnectionStrings:productConnection %>" 
             DeleteCommand="DELETE FROM [products] WHERE [id] = @id" 
-            InsertCommand="INSERT INTO [products] ([name], [type], [price], [roast], [country], [image], [review]) VALUES (@name, @type, @price, @roast, @country, @image, @review)" 
+            InsertCommand="INSERT INTO [products] ([name], [type], [price], [artist], [size], [image], [review]) VALUES (@name, @type, @price, @artist, @size, @image, @review)" 
             SelectCommand="SELECT * FROM [products]" 
-            UpdateCommand="UPDATE [products] SET [name] = @name, [type] = @type, [price] = @price, [roast] = @roast, [country] = @country, [image] = @image, [review] = @review WHERE [id] = @id">
+            UpdateCommand="UPDATE [products] SET [name] = @name, [type] = @type, [price] = @price, [artist] = @artist, [size] = @size, [image] = @image, [review] = @review WHERE [id] = @id">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
@@ -50,8 +50,8 @@
                 <asp:Parameter Name="name" Type="String" />
                 <asp:Parameter Name="type" Type="String" />
                 <asp:Parameter Name="price" Type="Double" />
-                <asp:Parameter Name="roast" Type="String" />
-                <asp:Parameter Name="country" Type="String" />
+                <asp:Parameter Name="artist" Type="String" />
+                <asp:Parameter Name="size" Type="String" />
                 <asp:Parameter Name="image" Type="String" />
                 <asp:Parameter Name="review" Type="String" />
             </InsertParameters>
@@ -59,8 +59,8 @@
                 <asp:Parameter Name="name" Type="String" />
                 <asp:Parameter Name="type" Type="String" />
                 <asp:Parameter Name="price" Type="Double" />
-                <asp:Parameter Name="roast" Type="String" />
-                <asp:Parameter Name="country" Type="String" />
+                <asp:Parameter Name="artist" Type="String" />
+                <asp:Parameter Name="size" Type="String" />
                 <asp:Parameter Name="image" Type="String" />
                 <asp:Parameter Name="review" Type="String" />
                 <asp:Parameter Name="id" Type="Int32" />

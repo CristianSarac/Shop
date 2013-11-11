@@ -1,24 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website-Shop", ".", "{4C20CCA7-51A8-4E8B-AA15-0869EAE7AA72}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Shop", ".", "{4C20CCA7-51A8-4E8B-AA15-0869EAE7AA72}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/sbp_new"
-		Debug.AspNetCompiler.PhysicalPath = "..\Website-Shop\"
+		Debug.AspNetCompiler.PhysicalPath = "..\Shop\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\sbp_new\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/sbp_new"
-		Release.AspNetCompiler.PhysicalPath = "..\Website-Shop\"
+		Release.AspNetCompiler.PhysicalPath = "..\Shop\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\sbp_new\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "49667"
+		VWDPort = "52652"
 	EndProjectSection
 EndProject
 Global

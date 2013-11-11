@@ -36,12 +36,12 @@ public static class ConnectionClass
                 string name = reader.GetString(1);
                 string type = reader.GetString(2);
                 double price = reader.GetDouble(3);
-                string roast = reader.GetString(4);
-                string country = reader.GetString(5);
+                string artist = reader.GetString(4);
+                string size = reader.GetString(5);
                 string image = reader.GetString(6);
                 string review = reader.GetString(7);
 
-                Product product = new Product(id, name, type, price, roast, country, image, review);
+                Product product = new Product(id, name, type, price, artist, size, image, review);
                 list.Add(product);
             }
         }
@@ -69,12 +69,12 @@ public static class ConnectionClass
                 string name = reader.GetString(1);
                 string type = reader.GetString(2);
                 double price = reader.GetDouble(3);
-                string roast = reader.GetString(4);
-                string country = reader.GetString(5);
+                string artist = reader.GetString(4);
+                string size = reader.GetString(5);
                 string image = reader.GetString(6);
                 string review = reader.GetString(7);
 
-                product = new Product(name, type, price, roast, country, image, review);
+                product = new Product(name, type, price, artist, size, image, review);
             }
         }
         finally
@@ -89,7 +89,7 @@ public static class ConnectionClass
     {
         string query = string.Format(
             @"INSERT INTO products VALUES ('{0}', '{1}', @prices, '{2}', '{3}','{4}', '{5}')",
-            product.Name, product.Type, product.Roast, product.Country, product.Image, product.Review);
+            product.Name, product.Type, product.Artist, product.Size, product.Image, product.Review);
         command.CommandText = query;
         command.Parameters.Add(new SqlParameter("@prices", product.Price));
         try

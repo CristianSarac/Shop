@@ -36,12 +36,12 @@ public partial class Pages_Product_Add : System.Web.UI.Page
             string type = txtType.Text;
             double price = Convert.ToDouble(txtPrice.Text);
             price = price / 100;
-            string roast = txtRoast.Text;
-            string country = txtCountry.Text;
+            string artist = txtArtist.Text;
+            string size = txtSize.Text;
             string image = "../Images/Product/" + ddlImage.SelectedValue;
             string review = txtReview.Text;
 
-            Product product = new Product(name, type, price, roast, country, image, review);
+            Product product = new Product(name, type, price, artist, size, image, review);
             ConnectionClass.AddProduct(product);
             lblResult.Text = "Upload successful!";
             ClearTextFields();
@@ -75,11 +75,11 @@ public partial class Pages_Product_Add : System.Web.UI.Page
 
     private void ClearTextFields()
     {
-        txtCountry.Text = "";
+        txtSize.Text = "";
         txtName.Text = "";
         txtPrice.Text = "";
         txtReview.Text = "";
-        txtRoast.Text = "";
+        txtArtist.Text = "";
         txtType.Text = "";
     }
 

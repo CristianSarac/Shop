@@ -4,30 +4,30 @@
     public string Name { get; set; }
     public string Type { get; set; }
     public double Price { get; set; }
-    public string Roast { get; set; }
-    public string Country { get; set; }
+    public string Artist { get; set; }
+    public string Size { get; set; }
     public string Image { get; set; }
     public string Review { get; set; }
 
-    public Product(int id, string name, string type, double price, string roast, string country, string image, string review)
+    public Product(int id, string name, string type, double price, string artist, string size, string image, string review)
     {
         Id = id;
         Name = name;
         Type = type;
         Price = price;
-        Roast = roast;
-        Country = country;
+        Artist = artist;
+        Size = size;
         Image = image;
         Review = review;
     }
 
-    public Product(string name, string type, double price, string roast, string country, string image, string review)
+    public Product(string name, string type, double price, string artist, string size, string image, string review)
     {
         Name = name;
         Type = type;
         Price = price;
-        Roast = roast;
-        Country = country;
+        Artist = artist;
+        Size = size;
         Image = image;
         Review = review;
     }

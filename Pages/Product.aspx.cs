@@ -47,12 +47,12 @@ public partial class Pages_Product : System.Web.UI.Page
             </tr>
 
             <tr>
-                <th>Roast: </th>
+                <th>Artist: </th>
                 <td>{3}</td>
             </tr>
 
             <tr>
-                <th>Origin: </th>
+                <th>Size: </th>
                 <td>{4}</td>
             </tr>
 
@@ -61,7 +61,7 @@ public partial class Pages_Product : System.Web.UI.Page
             </tr>           
             
            </table>",
-                   product.Name, product.Type, product.Price, product.Roast, product.Country, product.Review, product.Image));
+                   product.Name, product.Type, product.Price, product.Artist, product.Size, product.Review, product.Image));
 
            lblOuput.Text = sb.ToString();
 
