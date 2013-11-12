@@ -42,7 +42,7 @@ namespace Pages
         {
             MailAddress to = new MailAddress(email);
 			
-			//TODO: Fill in your own e-mail here!
+			//TODO: Fill in the customer's email
             MailAddress from = new MailAddress("dragan.raicici@gmail.com");
             string body = string.Format(
 @"Dear {0},
@@ -64,7 +64,7 @@ John Doe", client, Request.QueryString["date"], GenerateOrderedItems(orderList))
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
 			
-			//TODO: Fill in your own e-mail and password here!
+			//TODO: Fill in the customer's email and password here!
             smtp.Credentials = new NetworkCredential("dragan.raicici@gmail.com", "");
             smtp.EnableSsl = true;
 
