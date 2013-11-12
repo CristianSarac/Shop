@@ -176,6 +176,13 @@
     color: gray;
 }
 
+.ProductsReview {
+    margin: 0px 5px 5px 0px;
+    width: 150px;
+    font-weight: normal;
+    font-size: 16px;
+}
+
 .ProductsPrice {
     margin: 0px 5px 5px 0px;
     width: 150px;
