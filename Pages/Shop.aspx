@@ -15,11 +15,8 @@
     <br />
     <asp:Label ID="lblError" runat="server"></asp:Label>
     <asp:Panel ID="pnlProducts" runat="server">
-
-        <asp:SqlDataSource ID="dsProducts" runat="server"
-            ConnectionString="<%$ ConnectionStrings:productConnection %>"
-            SelectCommand="SELECT [image], [review], [name], [price] FROM [products]"></asp:SqlDataSource>
-        <asp:Repeater ID="repeater" runat="server" DataSourceID="dsProducts">
+         <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" />
+        <asp:Repeater ID="repeater" runat="server">
             <HeaderTemplate>
                 <table class="shop-tabel" cellpadding="4" cellspacing="0" border="0">
             </HeaderTemplate>
@@ -57,7 +54,6 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
-        
     </asp:Panel>
 
     <br />
