@@ -20,6 +20,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lblLogin.Text = "Your Account";
             LinkButton1.Text = "Login";
             
+            
         }
     }
 
@@ -36,7 +37,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             //User logs out
             Session.Abandon();
             Response.Redirect("~/Pages/Home.aspx");
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "reset", "paypal.minicart.cart.destroy();", true);
         }
     }
 }

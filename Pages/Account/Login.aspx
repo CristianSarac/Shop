@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Pages_Account_Login" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table>
         <tr>
@@ -13,9 +15,12 @@
         <tr>
             <td><b>Password: </b></td>
             <td>
+               
                 <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+                
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                     ErrorMessage="*" ControlToValidate="txtPassword"></asp:RequiredFieldValidator>
+                
             </td>
         </tr>
         <tr>

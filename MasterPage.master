@@ -9,6 +9,7 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="/Shop/bxslider/jquery.bxslider.min.js"></script>
      <script type="text/javascript" src="../JavaScript/minicart.min.js"></script>
+    
 
     <link href="/Shop/bxslider/jquery.bxslider.css" rel="stylesheet" />
     <script type="text/javascript">
@@ -23,6 +24,13 @@
 
 <body>
     <form id="form1" runat="server">
+        <script type="text/javascript"
+        src="../JavaScript/paypal-button-minicart.min.js">
+    </script>
+    <script type="text/javascript">
+        PAYPAL.apps.MiniCart.render();
+
+    </script>
         <div id="wrapper">
 
 
@@ -43,13 +51,7 @@
                             <li><a href="~/Pages/Orders.aspx" runat="server">Orders</a></li>
                         </ul>
                     </li>
-                    <li>     <form  target="_self" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
-<input type="hidden" name="cmd" value="_cart">
-<input type="hidden" name="display" value="1">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_viewcart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-</form>
-
-</li>
+                    
                     <li id="Login">
                         <asp:Label ID="lblLogin" runat="server" Text=""></asp:Label>
                         <ul>
