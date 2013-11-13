@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using Entities;
+using System.Diagnostics;
 
 public static class ConnectionClass
 {
@@ -19,6 +21,103 @@ public static class ConnectionClass
     }
 
     #region Product
+
+    public static ArrayList GetProductTypes()
+    {
+        ArrayList list = new ArrayList();
+        
+        string query = string.Format("SELECT DISTINCT type FROM products ");
+
+        try
+        {
+            conn.Open();
+            command.CommandText = query;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                
+                string type = reader.GetString(0);
+                list.Add(type);
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return list;
+    }
+
+    public static List<Product> GetProductsByKeyword(string keyword)
+    {
+        List<Product> list = new List<Product>();
+
+        string query = string.Format("SELECT * FROM products WHERE name LIKE '{0}' OR artist LIKE '{0}' OR type LIKE'{0}' ",keyword);
+
+        try
+        {
+            conn.Open();
+            command.CommandText = query;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+
+                int id = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                string type = reader.GetString(2);
+                double price = reader.GetDouble(3);
+                string artist = reader.GetString(4);
+                string size = reader.GetString(5);
+                string image = reader.GetString(6);
+                string review = reader.GetString(7);
+
+                Product product = new Product(id, name, type, price, artist, size, image, review);
+                list.Add(product);
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return list;
+    }
+
+    public static List<Product> GetAllProducts()
+    {
+       List<Product> list = new List<Product>();
+
+        string query = string.Format("SELECT * FROM products ");
+
+        try
+        {
+            conn.Open();
+            command.CommandText = query;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+
+                int id = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                string type = reader.GetString(2);
+                double price = reader.GetDouble(3);
+                string artist = reader.GetString(4);
+                string size = reader.GetString(5);
+                string image = reader.GetString(6);
+                string review = reader.GetString(7);
+
+                Product product = new Product(id, name, type, price, artist, size, image, review);
+                list.Add(product);
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return list;
+    }
+
     public static ArrayList GetProductByType(string productType)
     {
         ArrayList list = new ArrayList();

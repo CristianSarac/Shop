@@ -11,15 +11,12 @@
     <br />
     <asp:Label ID="lblError" runat="server"></asp:Label>
     <asp:Panel ID="pnlProducts" runat="server">
-         <asp:SqlDataSource ID="dsProducts" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:productConnection %>" 
-        SelectCommand="SELECT [image], [review], [name], [price] FROM [products]">
-    </asp:SqlDataSource>
-    <asp:Repeater ID="repeater" runat="server" DataSourceID="dsProducts">
-    <HeaderTemplate>
-    <table width="700px" cellpadding="4" cellspacing="0" border="0">
-    </HeaderTemplate>
-    <ItemTemplate>
+        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" />
+            <asp:Repeater ID="Repeater1" runat="server">
+                <HeaderTemplate>
+                    <table cellpadding="4",cellspacing="0",border="0">
+                </HeaderTemplate>
+                <ItemTemplate>
         <tr>
             <td style="border-bottom: solid 1px #177ea0">
                 <asp:Image ID="imgProduct" CssClass="ProductsImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "image") %>' />
@@ -27,7 +24,6 @@
             <asp:Label ID="lblName" CssClass="ProductsName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "name") %>'></asp:Label> <br />
             <asp:Label ID="lblDescription" CssClass="ProductsReview" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "review") %>'></asp:Label><br />
             <asp:Label ID="lblPrice" runat="server" CssClass="ProductsPrice" Text='<%# String.Format("{0:c}", DataBinder.Eval(Container.DataItem, "price")) %>' Font-Bold="true" ></asp:Label>
-           <br />
                 <div id="Div1" runat="server">
             <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
                     <input type="hidden" name="cmd" value="_cart">
@@ -42,16 +38,16 @@
                    
                     </div>
             </td>
-        </tr>
-    </ItemTemplate>
-    <FooterTemplate>
-    </table>
-    </FooterTemplate>
-    </asp:Repeater>
-         <script>
-             paypal.minicart.render();
-             
-                    </script>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </table>
+                </FooterTemplate>
+            </asp:Repeater>
+             <script>
+                 paypal.minicart.render();
+
+                    </script>      
     </asp:Panel>
    
     <br />
