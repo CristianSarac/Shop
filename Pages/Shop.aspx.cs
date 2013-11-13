@@ -14,40 +14,33 @@ namespace Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           // GenerateControls();
             Authenticate();
 
             if (!IsPostBack)
             {
-                // String user = Session["login"].ToString();  
                 DropDownList1.DataSource = ConnectionClass.GetProductTypes();
-                DropDownList1.DataBind();
-                
-             
-                
-
+                DropDownList1.DataBind();      
             }
             if (Session["search"] != null)
             {
                 string keyword = Session["search"] as string;
-
                 lista = ConnectionClass.GetProductsByKeyword(keyword);
+                Session["search"] = null;
+                repeater.DataSource = lista;
+                repeater.DataBind();
             }
-            lista = ConnectionClass.GetAllProducts();
-                string connectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=ProductDB;Integrated Security=True";
-
-                SqlDataSource sqlData = new SqlDataSource(connectionString, "SELECT [image], [review], [name], [price] FROM [products]");
-                Repeater1.DataSource = sqlData;
-                Repeater1.DataBind();
-           
-
-
+            else
+            {
+                lista = ConnectionClass.GetAllProducts();
+                repeater.DataSource = lista;
+                repeater.DataBind();
+            }
+                
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            Debug.WriteLine("inainte de schimbare " + Repeater1.DataSource+ lista.Count);
             List<Product> lista2 = new List<Product>();
             
             foreach (Product p in lista)
@@ -59,8 +52,8 @@ namespace Pages
                     
                 }
             }
-            Repeater1.DataSource = lista2;
-            Repeater1.DataBind();
+            repeater.DataSource = lista2;
+            repeater.DataBind();
             
         }
 

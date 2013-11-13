@@ -51,17 +51,19 @@ public static class ConnectionClass
     public static List<Product> GetProductsByKeyword(string keyword)
     {
         List<Product> list = new List<Product>();
-
-        string query = string.Format("SELECT * FROM products WHERE name LIKE '{0}' OR artist LIKE '{0}' OR type LIKE'{0}' ",keyword);
+        Debug.WriteLine(keyword);
+        string query = string.Format("SELECT * FROM products WHERE name LIKE '%{0}%' OR artist LIKE '%{0}%' OR type LIKE '%{0}%' ", keyword);
 
         try
         {
             conn.Open();
+            
             command.CommandText = query;
             SqlDataReader reader = command.ExecuteReader();
+           
             while (reader.Read())
             {
-
+                
                 int id = reader.GetInt32(0);
                 string name = reader.GetString(1);
                 string type = reader.GetString(2);
