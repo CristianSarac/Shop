@@ -13,7 +13,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
         else
         {
-            lblLogin.Visible = false;
+            lblLogin.Visible = true;
+            lblLogin.Text = "Your Account";
             LinkButton1.Text = "Login";
         }
     }
