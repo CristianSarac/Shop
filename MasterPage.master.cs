@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Web.UI;
 
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
-
-
         //Check if a user is logged in
         if (Session["login"] != null)
         {
@@ -21,6 +18,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lblLogin.Visible = true;
             lblLogin.Text = "Your Account";
             LinkButton1.Text = "Login";
+            
         }
     }
     protected void LinkButton1_Click(object sender, EventArgs e)
@@ -33,7 +31,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         else
         {
             //User logs out
-            Session.Clear();
+            Session.Abandon();
             Response.Redirect("~/Pages/Home.aspx");
         }
     }
