@@ -2,7 +2,12 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+     <script type="text/javascript" src="../JavaScript/minicart.min.js"></script>
+ <script type="text/javascript">
+     paypal.minicart.render();
 
+
+        </script>
 
 
 

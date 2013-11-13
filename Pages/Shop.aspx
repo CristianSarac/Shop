@@ -56,6 +56,8 @@
         </asp:Repeater>
         <script type="text/javascript">
             paypal.minicart.render();
+            
+            
 
         </script>
     </asp:Panel>

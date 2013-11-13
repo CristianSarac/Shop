@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Web.UI;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        
         //Check if a user is logged in
         if(Session["login"] != null)
         {
@@ -16,6 +19,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lblLogin.Visible = true;
             lblLogin.Text = "Your Account";
             LinkButton1.Text = "Login";
+            
         }
     }
 
@@ -30,8 +34,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
         else
         {
             //User logs out
-            Session.Clear();
+            Session.Abandon();
             Response.Redirect("~/Pages/Home.aspx");
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "reset", "paypal.minicart.cart.destroy();", true);
         }
     }
 }
