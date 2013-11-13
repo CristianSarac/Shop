@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
@@ -32,5 +33,5 @@ public partial class MasterPage : System.Web.UI.MasterPage
             Session.Clear();
             Response.Redirect("~/Pages/Home.aspx");
         }
-    }
+    }   
 }

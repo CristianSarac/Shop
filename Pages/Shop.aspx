@@ -29,7 +29,7 @@
             <asp:Label ID="lblPrice" runat="server" CssClass="ProductsPrice" Text='<%# String.Format("{0:c}", DataBinder.Eval(Container.DataItem, "price")) %>' Font-Bold="true" ></asp:Label>
            <br />
                 <div id="Div1" runat="server">
-            <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <form target="paypal"   action="https://www.paypal.com/cgi-bin/webscr" method="post">
                     <input type="hidden" name="cmd" value="_cart">
                     <input type="hidden" name="add" value= "1">
                     <input type="hidden" name="item_name" value= '<%# DataBinder.Eval(Container.DataItem, "name") %>'>
