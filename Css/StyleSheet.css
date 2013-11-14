@@ -36,7 +36,6 @@
     margin: 25px 10px 20px 10px;
     padding: 10px;
     border: 1px solid #CCB598;
-    
 }
 
 #footer {
@@ -125,6 +124,27 @@
         padding: 4px 7px;
     }
 
+.login {
+    font-size: 14px;
+    width: 100%;
+}
+
+    .login .text {
+        width: 60px;
+    }
+
+    .login input[type="text"], .login input[type="password"] {
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        width: 200px;
+    }
+
+    .login .error-message {
+        float: right;
+        font-size: 16px;
+        color: red;
+    }
+
 .imgLeft {
     float: left;
     width: 240px;
@@ -165,16 +185,37 @@
         width: 96%;
     }
 
-    .box2 input {
+    .box2 input, .login input[type="submit"] {
         padding: 7px 40px;
         float: right;
         border: 1px solid #A3805A;
         background: #A3805A;
     }
 
-        .box2 input:hover {
+        .box2 input:hover, .login input[type="submit"]:hover {
             color: #fff;
         }
+
+
+.login-button {
+    float: left !important;
+    margin: 0;
+    padding: 7px 36px !important;
+}
+
+.register-button {
+    padding: 7px 25px;
+    line-height: 2.3;
+    border: 1px solid #A3805A;
+    background: #A3805A;
+    margin-left: 11px;
+    text-decoration: none;
+    color: #000;
+}
+
+    .register-button:hover {
+        color: #fff;
+    }
 
 .shop-tabel {
     width: 100%;
@@ -195,15 +236,32 @@
     }
 
         .shop-tabel .details .paypal {
-            width: 12.5% !important;
+            width: 18% !important;
             height: 100%;
             float: right !important;
         }
 
-    .shop-tabel img {
-        width: 25%;
-        float: left;
-    }
+        .shop-tabel .details .paypal-group {
+            margin-left: 5px;
+            margin-top: 0;
+        }
+
+            .shop-tabel .details .paypal-group input {
+                margin-left: 10px;
+                text-align: center;
+                padding: 0 5px;
+                width: 20px;
+            }
+
+.paypal-button button.large {
+    padding: 5px 14px !important;
+    font-size: 12px !important;
+}
+
+.shop-tabel img {
+    width: 25%;
+    float: left;
+}
 
 .productTable {
     width: 100%;

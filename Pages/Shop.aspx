@@ -23,7 +23,7 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <asp:Image ID="imgProduct" CssClass="ProductsImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "image") %>' />
+                        <asp:Image ID="imgProduct" CssClass="ProductsImage"  runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "image") %>' />
 
                         <div class="details">
                             <div class="alignLeft">
