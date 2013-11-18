@@ -298,7 +298,7 @@ public static class ConnectionClass
     public static string RegisterUser(User user)
     {
         //Check if user exists
-        string query = string.Format("SELECT COUNT(*) FROM users WHERE name = '{0}'", user.Name);
+        string query = string.Format("SELECT COUNT(*) FROM users WHERE email = '{0}'", user.Email);
         command.CommandText = query;
 
         try
@@ -318,7 +318,7 @@ public static class ConnectionClass
             else
             {
                 //User exists
-                return "A user with this name already exists";
+                return "A user with this email already exists";
             }
         }
         finally

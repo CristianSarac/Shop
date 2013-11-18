@@ -19,6 +19,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lblLogin.Text = "Your Account";
             LinkButton1.Text = "Login";
             
+            
         }
     }
     protected void LinkButton1_Click(object sender, EventArgs e)
