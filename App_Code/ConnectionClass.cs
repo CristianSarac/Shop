@@ -52,7 +52,7 @@ public static class ConnectionClass
     {
         List<Product> list = new List<Product>();
         Debug.WriteLine(keyword);
-        string query = string.Format("SELECT * FROM products WHERE name LIKE '%{0}%' OR artist LIKE '%{0}%' OR type LIKE '%{0}%' ", keyword);
+        string query = string.Format("SELECT * FROM products WHERE name LIKE '%{0}%' OR artist LIKE '%{0}%' OR type LIKE '%{0}%' OR review LIKE '%{0}%' ", keyword);
 
         try
         {
