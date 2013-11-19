@@ -9,10 +9,19 @@
     <script type="text/javascript" src="/Shop/bxslider/jquery.bxslider.min.js"></script>
     <link href="/Shop/bxslider/jquery.bxslider.css" rel="stylesheet" />
     <script type="text/javascript">
-        $(document).ready(function () {
 
-            $('.bxslider').bxSlider();
+
+        $(document).ready(function () {
+            $('.bxslider').bxSlider({
+                auto: true
+            });
+            $("#content_area img").wrap(function () {
+                return "<a class='fancybox' href='" + $(this).attr("src") + "' />";
+            });
+
+            $(".fancybox").fancybox();
         });
+
     </script>
     <link rel="stylesheet" type="text/css" href="Css/StyleSheet.css" />
 </head>
@@ -48,8 +57,8 @@
                         </ul>
                     </li>
                     <li id="searchbox">
-                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                        <asp:Button ID="Button1" runat="server" Text="Search" />
+                        <asp:TextBox ID="tbxSearch" runat="server"></asp:TextBox>
+                        <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Search" />
                     </li>
                 </ul>
                 <div class="clearfix"></div>

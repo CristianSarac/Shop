@@ -2,6 +2,9 @@
     CodeFile="Home.aspx.cs" Inherits="Pages.Pages_Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
+    
+
     <div class="clearfix">
         <img id="Img3" runat="server" src="~/Images/product1.png" class="imgLeft" />
         <h3>Title 1</h3>

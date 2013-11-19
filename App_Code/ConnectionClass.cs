@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using Entities;
+using System.Diagnostics;
 
 public static class ConnectionClass
 {
@@ -19,6 +21,105 @@ public static class ConnectionClass
     }
 
     #region Product
+
+    public static ArrayList GetProductTypes()
+    {
+        ArrayList list = new ArrayList();
+        
+        string query = string.Format("SELECT DISTINCT type FROM products ");
+
+        try
+        {
+            conn.Open();
+            command.CommandText = query;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                
+                string type = reader.GetString(0);
+                list.Add(type);
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return list;
+    }
+
+    public static List<Product> GetProductsByKeyword(string keyword)
+    {
+        List<Product> list = new List<Product>();
+        Debug.WriteLine(keyword);
+        string query = string.Format("SELECT * FROM products WHERE name LIKE '%{0}%' OR artist LIKE '%{0}%' OR type LIKE '%{0}%' ", keyword);
+
+        try
+        {
+            conn.Open();
+            
+            command.CommandText = query;
+            SqlDataReader reader = command.ExecuteReader();
+           
+            while (reader.Read())
+            {
+                
+                int id = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                string type = reader.GetString(2);
+                double price = reader.GetDouble(3);
+                string artist = reader.GetString(4);
+                string size = reader.GetString(5);
+                string image = reader.GetString(6);
+                string review = reader.GetString(7);
+
+                Product product = new Product(id, name, type, price, artist, size, image, review);
+                list.Add(product);
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return list;
+    }
+
+    public static List<Product> GetAllProducts()
+    {
+       List<Product> list = new List<Product>();
+
+        string query = string.Format("SELECT * FROM products ");
+
+        try
+        {
+            conn.Open();
+            command.CommandText = query;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+
+                int id = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                string type = reader.GetString(2);
+                double price = reader.GetDouble(3);
+                string artist = reader.GetString(4);
+                string size = reader.GetString(5);
+                string image = reader.GetString(6);
+                string review = reader.GetString(7);
+
+                Product product = new Product(id, name, type, price, artist, size, image, review);
+                list.Add(product);
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return list;
+    }
+
     public static ArrayList GetProductByType(string productType)
     {
         ArrayList list = new ArrayList();
@@ -197,7 +298,7 @@ public static class ConnectionClass
     public static string RegisterUser(User user)
     {
         //Check if user exists
-        string query = string.Format("SELECT COUNT(*) FROM users WHERE name = '{0}'", user.Name);
+        string query = string.Format("SELECT COUNT(*) FROM users WHERE email = '{0}'", user.Email);
         command.CommandText = query;
 
         try
@@ -217,13 +318,74 @@ public static class ConnectionClass
             else
             {
                 //User exists
-                return "A user with this name already exists";
+                return "A user with this email already exists";
             }
         }
         finally
         {
             conn.Close();
         }
+    }
+
+    public static bool searchUser(String email)
+    {
+        string query = string.Format("SELECT COUNT(*) FROM users WHERE email = '{0}'",email);
+        command.CommandText = query;
+
+        try
+        {
+            conn.Open();
+            int amountOfUsers = (int)command.ExecuteScalar();
+
+            if (amountOfUsers < 1)
+            {
+                Debug.WriteLine(" nui Gasit");
+                return false;
+            }
+            else
+            {
+                Debug.WriteLine("Exista");
+                return true;
+            }
+           
+        }
+        finally
+        {
+            conn.Close();
+        }
+    }
+
+    public static User GetUserByEmail(string email)
+    {
+        string query = string.Format("SELECT * FROM users WHERE email = '{0}'", email);
+        command.CommandText = query;
+        User user = null;
+
+        try
+        {
+            conn.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int id = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                string password = reader.GetString(2);
+                string userEmail = reader.GetString(3);
+                string userType = reader.GetString(4);
+
+                user = new User(id, name, password, userEmail, userType);
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+        }
+        finally
+        {
+            conn.Close();
+        }
+        return user;
     }
 
     #endregion

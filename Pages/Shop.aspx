@@ -1,7 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Shop.aspx.cs" Inherits="Pages.Pages_Shop" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript" src="../JavaScript/minicart.min.js"></script>
+    <script type="text/javascript"
+        src="../JavaScript/paypal-button-minicart.min.js"></script>
     <asp:Label ID="lblResult" runat="server" Text="Label" Visible="False"></asp:Label>
     <br />
     <asp:Button ID="btnOk" runat="server" Text="Ok" Visible="False" Width="100px"
@@ -12,17 +16,16 @@
     <asp:Label ID="lblError" runat="server"></asp:Label>
     <asp:Panel ID="pnlProducts" runat="server">
 
-       <asp:SqlDataSource ID="dsProducts" runat="server"
-            ConnectionString="<%$ ConnectionStrings:productConnection %>"
-            SelectCommand="SELECT [image], [review], [name], [price] FROM [products]"></asp:SqlDataSource>
-        <asp:Repeater ID="repeater" runat="server" DataSourceID="dsProducts">
+         <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" />
+        <asp:Repeater ID="repeater" runat="server">
+
             <HeaderTemplate>
                 <table class="shop-tabel" cellpadding="4" cellspacing="0" border="0">
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
                     <td>
-                        <asp:Image ID="imgProduct" CssClass="ProductsImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "image") %>' />
+                        <asp:Image ID="imgProduct" CssClass="ProductsImage"  runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "image") %>' />
 
                         <div class="details">
                             <div class="alignLeft">
@@ -33,16 +36,15 @@
                                 <br />
                             </div>
                             <div id="Div1" class="paypal" runat="server">
-                                <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="item_name" value='<%# DataBinder.Eval(Container.DataItem, "name") %>'>
-                                    <input type="hidden" name="amount" value='<%# DataBinder.Eval(Container.DataItem, "price") %>'>
-                                    <input type="hidden" name="currency_code" value="USD">
-                                    <input type="hidden" name="return" value="<%=System.Web.Configuration.WebConfigurationManager.AppSettings[" successurl="] %>" />
-                                    <input type="hidden" name="cancel_return" value="<%=System.Web.Configuration.WebConfigurationManager.AppSettings[" failedurl="] %>" />
-                                    <input type="image" src="http://www.paypalobjects.com/en_US/i/btn/x-click-but22.gif" border="0" name="submit" width="87" height="23" alt="Make payments with PayPal - it's fast, free and secure!">
-                                </form>
+                                <script type="text/javascript"
+                                    src="../JavaScript/paypal-button-minicart.min.js?merchant=axel19ro@yahoo.com"
+                                    data-button="cart"
+                                    data-name="<%# DataBinder.Eval(Container.DataItem, "name") %>" 
+                                    data-quantity-editable="1"
+                                    data-amount="<%# DataBinder.Eval(Container.DataItem, "price") %>"
+                                    data-currency="usd"
+                                    data-callback="mysite/shop"
+                                    data-env="sandbox"></script>
 
                             </div>
                         </div>

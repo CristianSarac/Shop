@@ -3,18 +3,67 @@ using System.Collections;
 using System.Text;
 using System.Web.UI.WebControls;
 using Entities;
+using System.Collections.Generic;
+
 using System.Diagnostics;
+using Facebook;
 
 namespace Pages
 {
     public partial class Pages_Shop : System.Web.UI.Page
     {
+        List<Product> lista = new List<Product>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            GenerateControls();
             Authenticate();
-            String user = Session["login"].ToString();
+
+            //var accessToken = Session["AccessToken"].ToString();
+            //var client = new FacebookClient(accessToken);
+            //dynamic result = client.Get("me", new { fields = "name,id" });
+            //string name = result.name;
+            //string id = result.id;
+
+
+            if (!IsPostBack)
+            {
+                DropDownList1.DataSource = ConnectionClass.GetProductTypes();
+                DropDownList1.DataBind();      
+            }
+            if (Session["search"] != null)
+            {
+                string keyword = Session["search"] as string;
+                lista = ConnectionClass.GetProductsByKeyword(keyword);
+                Session["search"] = null;
+                repeater.DataSource = lista;
+                repeater.DataBind();
+            }
+            else
+            {
+                lista = ConnectionClass.GetAllProducts();
+                repeater.DataSource = lista;
+                repeater.DataBind();
+            }
+                
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            List<Product> lista2 = new List<Product>();
+            
+            foreach (Product p in lista)
+            {
+               
+                if (p.Type==DropDownList1.SelectedValue)
+                {
+                    lista2.Add(p);
+                    
+                }
+            }
+            repeater.DataSource = lista2;
+            repeater.DataBind();
+            
         }
 
         protected void btnOk_Click(object sender, EventArgs e)
@@ -116,6 +165,7 @@ namespace Pages
             //           }
         }
 
+
         //Returns a list of all orders placed in textboxes
         private ArrayList GetOrders()
         {
@@ -198,14 +248,11 @@ namespace Pages
         //Check if user is logged in
         private void Authenticate()
         {
-            if (Session["login"] == null)
-            {
-                Response.Redirect("~/pages/account/login.aspx");
-            }
+            //if (Session["login"] == null)
+            //{
+            //    Response.Redirect("~/pages/account/login.aspx");
+            //}
         }
 
-       
-       
-       
 }
 }

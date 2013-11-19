@@ -1,9 +1,14 @@
 ﻿using System;
+using Facebook;
+using System.Diagnostics;
+
+
 
 public partial class Pages_Account_Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
 
     }
 
@@ -11,7 +16,7 @@ public partial class Pages_Account_Login : System.Web.UI.Page
     {
         User user = ConnectionClass.LoginUser(txtLogin.Text, txtPassword.Text);
 
-        if(user != null)
+        if (user != null)
         {
             //Store login variables in session
             Session["login"] = user.Name;
@@ -25,4 +30,11 @@ public partial class Pages_Account_Login : System.Web.UI.Page
         }
 
     }
+
+   
+
+
+
+
+
 }
