@@ -15,8 +15,10 @@
     <br />
     <asp:Label ID="lblError" runat="server"></asp:Label>
     <asp:Panel ID="pnlProducts" runat="server">
+
          <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" />
         <asp:Repeater ID="repeater" runat="server">
+
             <HeaderTemplate>
                 <table class="shop-tabel" cellpadding="4" cellspacing="0" border="0">
             </HeaderTemplate>
@@ -54,6 +56,11 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
+        <script type="text/javascript">
+            paypal.minicart.render();
+
+        </script>
+
     </asp:Panel>
 
     <br />

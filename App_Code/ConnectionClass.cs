@@ -327,6 +327,67 @@ public static class ConnectionClass
         }
     }
 
+    public static bool searchUser(String email)
+    {
+        string query = string.Format("SELECT COUNT(*) FROM users WHERE email = '{0}'",email);
+        command.CommandText = query;
+
+        try
+        {
+            conn.Open();
+            int amountOfUsers = (int)command.ExecuteScalar();
+
+            if (amountOfUsers < 1)
+            {
+                Debug.WriteLine(" nui Gasit");
+                return false;
+            }
+            else
+            {
+                Debug.WriteLine("Exista");
+                return true;
+            }
+           
+        }
+        finally
+        {
+            conn.Close();
+        }
+    }
+
+    public static User GetUserByEmail(string email)
+    {
+        string query = string.Format("SELECT * FROM users WHERE email = '{0}'", email);
+        command.CommandText = query;
+        User user = null;
+
+        try
+        {
+            conn.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int id = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                string password = reader.GetString(2);
+                string userEmail = reader.GetString(3);
+                string userType = reader.GetString(4);
+
+                user = new User(id, name, password, userEmail, userType);
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+        }
+        finally
+        {
+            conn.Close();
+        }
+        return user;
+    }
+
     #endregion
 
     #region Orders

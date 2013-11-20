@@ -1,18 +1,26 @@
 ﻿using System;
+
+using System.Diagnostics;
 using System.Web.UI;
+using Facebook;
+
+
 
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         //Check if a user is logged in
         if (Session["login"] != null)
         {
+            
             lblLogin.Text = "Welcome " + Session["login"];
             lblLogin.Visible = true;
             LinkButton1.Text = "Logout";
         }
+       
         else
         {
             lblLogin.Visible = true;
@@ -35,7 +43,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
             Session.Abandon();
             Response.Redirect("~/Pages/Home.aspx");
         }
-    }
+
+    }   
+
+   
     protected void btnSearch_Click(object sender, EventArgs e)
     {
 
@@ -44,5 +55,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
  
 
     }
+
+   
+
 }
 
