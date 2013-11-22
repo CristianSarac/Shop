@@ -17,7 +17,6 @@ public partial class Pages_Contact : System.Web.UI.Page
     {
         // Gmail Address from where you send the mail
         var fromAddress = "oaklea21@gmail.com";
-        // any address where the email will be sending
         var toAddress = "oaklea21@gmail.com";
         //Password of your gmail address
         const string fromPassword = "oaklea211";

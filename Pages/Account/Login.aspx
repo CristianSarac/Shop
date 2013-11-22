@@ -3,8 +3,18 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script>
 
+    <script type="text/javascript">
+        (function () {
+            var po = document.createElement('script');
+            po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://plus.google.com/js/client:plusone.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+
+    <script>
 
         window.fbAsyncInit = function () {
             FB.init({
@@ -37,7 +47,7 @@
                     form.appendChild(field);
 
                     document.body.appendChild(form);
-                   
+
                     $("#bt").css("display", "block");
                     $("#bt").click(function (e) {
                         form.submit();
@@ -63,7 +73,7 @@
 
                     document.body.appendChild(form);
                     form.submit();
-                   
+
                 } else {
                     // the user isn't logged in to Facebook.
                     // the user is logged in and has authenticated your
@@ -88,7 +98,7 @@
 
                     document.body.appendChild(form);
                     form.submit();
-                    
+
                 }
             });
 
@@ -126,6 +136,7 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                     ErrorMessage="*" ControlToValidate="txtLogin"></asp:RequiredFieldValidator>
             </td>
+
         </tr>
         <tr>
             <td class="text">Password:</td>
@@ -137,6 +148,7 @@
                     ErrorMessage="*" ControlToValidate="txtPassword"></asp:RequiredFieldValidator>
 
             </td>
+
         </tr>
         <tr>
             <td></td>
@@ -147,15 +159,51 @@
 
                 <asp:LinkButton ID="LinkButton2" runat="server"
                     PostBackUrl="~/Pages/Account/Registration.aspx" CssClass="register-button" CausesValidation="False">Register</asp:LinkButton>
-            </td>
+                <!--div used by facebook to display its data-->
 
-            <td>
-                <div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1" data-scope="email">
-                
-                </div>
-                <a href="#" style="display:none;"   id="bt">ceva</a>
             </td>
         </tr>
+
     </table>
+    <div style="margin-top: 10px;">
+        <div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1" data-scope="email"></div>
+        <a href="#" style="display: none;" id="bt">Login with Facebook</a>
+
+
+
+        <div id="gConnect">
+            <button class="g-signin"
+                data-scope="https://www.googleapis.com/auth/plus.login  https://www.googleapis.com/auth/userinfo.email "
+                data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                data-clientid="238144009696.apps.googleusercontent.com"
+                data-accesstype="offline"
+                data-callback="onSignInCallback"
+                data-theme="dark"
+                data-cookiepolicy="single_host_origin">
+            </button>
+        </div>
+        <script type="text/javascript">
+            /**
+            * Calls the helper method that handles the authentication flow.
+            *
+            * @param {Object} authResult An Object which contains the access token and
+            *   other authentication information.
+            */
+            function onSignInCallback(authResult) {
+                if (authResult['access_token']) {
+                    // The user is signed in
+                    var loc = '/Shop/Pages/Home.aspx?accessToken=' + authResult['access_token'];
+                    alert('accestoken: ' + authResult['access_token']);
+                    window.location.href = loc;
+                } else if (authResult['error']) {
+                    // There was an error, which means the user is not signed in.
+                    // As an example, you can troubleshoot by writing to the console:
+                    alert('There was an error: ' + authResult['error']);
+                }
+                //console.log('authResult', authResult);
+            }
+    </script>
+    </div>
+
 </asp:Content>
 

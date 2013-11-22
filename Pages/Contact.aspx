@@ -21,30 +21,30 @@
         </p>
         <div class="box1">
             <p>
-                Your name:
+                
         <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*"
             ControlToValidate="YourName" ValidationGroup="save" /><br />
-                <asp:TextBox ID="YourName" runat="server" Width="360px" /><br />
-                Your email address:
+                <asp:TextBox ID="YourName" placeholder="Name" runat="server" Width="360px" /><br />
+                
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*"
             ControlToValidate="YourEmail" ValidationGroup="save" /><br />
-                <asp:TextBox ID="YourEmail" runat="server" Width="360px" />
+                <asp:TextBox ID="YourEmail" placeholder="Email" runat="server" Width="360px" />
                 <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator23"
                     SetFocusOnError="true" Text="Example: username@gmail.com" ControlToValidate="YourEmail"
                     ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic"
                     ValidationGroup="save" /><br />
-                Subject:
+                
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*"
             ControlToValidate="YourSubject" ValidationGroup="save" /><br />
-                <asp:TextBox ID="YourSubject" runat="server" Width="360px" /><br />
+                <asp:TextBox ID="YourSubject" placeholder="Subject" runat="server" Width="360px" /><br />
             </p>
         </div>
         <div class="box2">
             <p>
-                Your Question:
+                
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*"
             ControlToValidate="Comments" ValidationGroup="save" /><br />
-                <asp:TextBox ID="Comments" runat="server"
+                <asp:TextBox ID="Comments" placeholder="Question" runat="server"
                     TextMode="MultiLine"   />
             </p>
             <p>

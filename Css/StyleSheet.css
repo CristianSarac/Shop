@@ -145,6 +145,20 @@
         color: red;
     }
 
+#bt {
+    padding: 3px 5px;
+    background: #5F78AB;
+    color: #fff;
+    width: 114px;
+    margin-top: 5px;
+    font-size: 11px;
+    line-height: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.fb-share-button {
+    width:90px !important;
+}
 .imgLeft {
     float: left;
     width: 240px;
@@ -170,6 +184,7 @@
     .box1 input {
         padding: 7px 5px;
         border: 1px solid #ccc;
+        font-family: Arial;
     }
 
 .box2 {
@@ -183,6 +198,7 @@
         border: 1px solid #ccc;
         height: 124px;
         width: 96%;
+        font-family: Arial;
     }
 
     .box2 input, .login input[type="submit"] {
@@ -293,7 +309,7 @@
 
 #ctl00_ContentPlaceHolder1_pnlProducts div {
     float: left;
-    width: 250px;
+    width: 350px;
     margin-bottom: 20px;
 }
 
