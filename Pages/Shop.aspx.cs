@@ -16,19 +16,13 @@ namespace Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Authenticate();
-
-            //var accessToken = Session["AccessToken"].ToString();
-            //var client = new FacebookClient(accessToken);
-            //dynamic result = client.Get("me", new { fields = "name,id" });
-            //string name = result.name;
-            //string id = result.id;
-
-
+            
             if (!IsPostBack)
             {
                 DropDownList1.DataSource = ConnectionClass.GetProductTypes();
-                DropDownList1.DataBind();      
+                DropDownList1.DataBind();
+                Sizeddl.DataSource = ConnectionClass.GetProductSizes();
+                Sizeddl.DataBind();
             }
             if (Session["search"] != null)
             {
@@ -65,6 +59,28 @@ namespace Pages
             repeater.DataBind();
             
         }
+
+        protected void Sizeddl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            List<Product> lista3 = new List<Product>();
+
+            foreach (Product p in lista)
+            {
+
+                if (p.Size == Sizeddl.SelectedValue && p.Type == DropDownList1.SelectedValue)
+                {
+                    lista3.Add(p);
+
+                }
+            }
+            repeater.DataSource = lista3;
+            repeater.DataBind();
+
+
+        }
+
+        #region Unused Code
 
         protected void btnOk_Click(object sender, EventArgs e)
         {
@@ -252,7 +268,8 @@ namespace Pages
             //{
             //    Response.Redirect("~/pages/account/login.aspx");
             //}
-        }
+        } 
+        #endregion
 
 }
 }

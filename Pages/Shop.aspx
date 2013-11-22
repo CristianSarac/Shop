@@ -16,7 +16,10 @@
     <asp:Label ID="lblError" runat="server"></asp:Label>
     <asp:Panel ID="pnlProducts" runat="server">
 
+         <asp:Label ID="lblCategory" runat="server" Text="Category: " />
          <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" />
+        <asp:Label ID="lblSize" runat="server" Text="Size: "/>
+        <asp:DropDownList ID="Sizeddl" runat="server" AutoPostBack="true" OnSelectedIndexChanged="Sizeddl_SelectedIndexChanged"/>
         <asp:Repeater ID="repeater" runat="server">
 
             <HeaderTemplate>
@@ -57,7 +60,7 @@
             </FooterTemplate>
         </asp:Repeater>
         <script type="text/javascript">
-            paypal.minicart.render();
+            PAYPAL.minicart.render();
 
         </script>
 
