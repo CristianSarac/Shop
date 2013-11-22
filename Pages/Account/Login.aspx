@@ -1,8 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Pages_Account_Login" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+    <script type="text/javascript">
+        function onSignInCallback(authResult) {
+            if (authResult['access_token']) {
+                // The user is signed in
+                var loc = '/Shop/Pages/Home.aspx?accessToken=' + authResult['access_token'];
+                window.location.href = loc;
+            } else if (authResult['error']) {
+                // There was an error, which means the user is not signed in.
+                // As an example, you can troubleshoot by writing to the console:
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+            }
+            //console.log('authResult', authResult);
+        }
+    </script>
 
     <script type="text/javascript">
         (function () {
@@ -13,6 +26,10 @@
             s.parentNode.insertBefore(po, s);
         })();
     </script>
+
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
 
     <script>
 
@@ -48,11 +65,11 @@
 
                     document.body.appendChild(form);
 
-                    $("#bt").css("display", "block");
-                    $("#bt").click(function (e) {
-                        form.submit();
+                    //$("#bt").css("display", "block");
+                    // $("#bt").click(function (e) {
+                    form.submit();
 
-                    });
+                    //});
                 } else if (response.status === 'not_authorized') {
                     // the user is logged in to Facebook, 
                     // but has not authenticated your app
@@ -116,18 +133,7 @@
         }(document));
     </script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(window).keydown(function (e) {
-                if (e.keyCode == 13) {
-                    alert($('.login-button'));
-                    $('.login input[type="submit"]').click();
-                }
-            });
 
-        });
-
-    </script>
     <table class="login">
         <tr>
             <td class="text">Login:</td>
@@ -173,7 +179,7 @@
 
         <div id="gConnect">
             <button class="g-signin"
-                data-scope="https://www.googleapis.com/auth/plus.login  https://www.googleapis.com/auth/userinfo.email "
+                data-scope="https://www.googleapis.com/auth/plus.login  https://www.googleapis.com/auth/userinfo.email  https://www.googleapis.com/auth/userinfo.profile"
                 data-requestvisibleactions="http://schemas.google.com/AddActivity"
                 data-clientid="238144009696.apps.googleusercontent.com"
                 data-accesstype="offline"
@@ -182,27 +188,7 @@
                 data-cookiepolicy="single_host_origin">
             </button>
         </div>
-        <script type="text/javascript">
-            /**
-            * Calls the helper method that handles the authentication flow.
-            *
-            * @param {Object} authResult An Object which contains the access token and
-            *   other authentication information.
-            */
-            function onSignInCallback(authResult) {
-                if (authResult['access_token']) {
-                    // The user is signed in
-                    var loc = '/Shop/Pages/Home.aspx?accessToken=' + authResult['access_token'];
-                    alert('accestoken: ' + authResult['access_token']);
-                    window.location.href = loc;
-                } else if (authResult['error']) {
-                    // There was an error, which means the user is not signed in.
-                    // As an example, you can troubleshoot by writing to the console:
-                    alert('There was an error: ' + authResult['error']);
-                }
-                //console.log('authResult', authResult);
-            }
-    </script>
+
     </div>
 
 </asp:Content>

@@ -25,7 +25,12 @@
     <asp:Label ID="lblError" runat="server"></asp:Label>
     <asp:Panel ID="pnlProducts" runat="server">
 
+
+        <asp:Label ID="lblCategory" runat="server" Text="Category: " />
         <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" />
+        <asp:Label ID="lblSize" runat="server" Text="Size: " />
+        <asp:DropDownList ID="Sizeddl" runat="server" AutoPostBack="true" OnSelectedIndexChanged="Sizeddl_SelectedIndexChanged" />
+
         <asp:Repeater ID="repeater" runat="server">
 
             <HeaderTemplate>
@@ -66,6 +71,12 @@
 
 
 
+                        <!-- Place this tag where you want the share button to render. -->
+                        <div class="g-plus" data-action="share" data-annotation="none"></div>
+
+
+
+
                         <div class="clearfix"></div>
                     </td>
                 </tr>
@@ -75,12 +86,20 @@
             </FooterTemplate>
         </asp:Repeater>
         <script type="text/javascript">
-            paypal.minicart.render();
+            PAYPAL.minicart.render();
 
         </script>
 
     </asp:Panel>
 
+    <!-- Place this tag after the last share tag. -->
+    <script type="text/javascript">
+        (function () {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
     <br />
 </asp:Content>
 

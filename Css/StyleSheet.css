@@ -47,7 +47,8 @@
 }
 
 #navigation {
-    background: #5A4428 /*#E4F2EA;*/;
+    background: #5A4428;
+    margin: 24px 0px;
 }
 
 #nav {
@@ -102,11 +103,11 @@
     }
 
     #nav span {
-        padding: 5px 5px;
+        padding: 5px 5px 6px 5px;
     }
 
     #nav a {
-        padding: 5px 10px;
+        padding: 15px 10px;
     }
 
 #searchbox {

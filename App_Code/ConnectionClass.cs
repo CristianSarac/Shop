@@ -48,11 +48,37 @@ public static class ConnectionClass
         return list;
     }
 
+    public static ArrayList GetProductSizes()
+    {
+        ArrayList list = new ArrayList();
+
+        string query = string.Format("SELECT DISTINCT size FROM products ");
+
+        try
+        {
+            conn.Open();
+            command.CommandText = query;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+
+                string type = reader.GetString(0);
+                list.Add(type);
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return list;
+    }
+
     public static List<Product> GetProductsByKeyword(string keyword)
     {
         List<Product> list = new List<Product>();
         Debug.WriteLine(keyword);
-        string query = string.Format("SELECT * FROM products WHERE name LIKE '%{0}%' OR artist LIKE '%{0}%' OR type LIKE '%{0}%' ", keyword);
+        string query = string.Format("SELECT * FROM products WHERE name LIKE '%{0}%' OR artist LIKE '%{0}%' OR type LIKE '%{0}%' OR review LIKE '%{0}%' ", keyword);
 
         try
         {
