@@ -71,6 +71,7 @@
                         <li id="Login">
                             <asp:Label ID="lblLogin" runat="server" Text=""></asp:Label>
                             <ul>
+                                <li><a id="A8" href="~/Pages/Wishlist.aspx" runat="server">Wishlist</a></li>
                                 <li>
                                     <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">LinkButton</asp:LinkButton>
                                 </li>

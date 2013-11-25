@@ -31,22 +31,16 @@ public class FacebookLogin : IHttpHandler, System.Web.SessionState.IRequiresSess
         string name = result.name;
         string id = result.id;
         string email = result.email;
-        Debug.WriteLine("Email???" + email+name+id);
         User user = null;
         if (!ConnectionClass.searchUser(email))
         {
-            Debug.WriteLine("Nu lam gasit");
             user = new User(name, "1234", email, "user");
             ConnectionClass.RegisterUser(user);
-
-
         }
         else
         {
-            Debug.WriteLine("else");
             user = ConnectionClass.GetUserByEmail(email);
         }
-        Debug.WriteLine(user.Name + "----" + user.Password);
         ConnectionClass.LoginUser(user.Name, user.Password);
         context.Session["login"] = user.Name;
         context.Session["type"] = user.Type;

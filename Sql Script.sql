@@ -186,3 +186,11 @@ GO
 INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [review]) VALUES (N'Crow Abstract Giclee Print On Canvas', N'Painting', 310.00, N'Mike Lea', N'30x40', N'../Images/Product/crow.jpg', N'Watermarks will not be present on final printed images.')
 INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [review]) VALUES (N'Chibi Cthulhu Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/Chibi-Cthulhu.jpg', N'Chibi Cthulhu is sad.... he is sad because he is homeless.... you could give him a home..... unless of course your heart is cold and dead like the pits of Rlyeh.')
 INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [review]) VALUES (N'No. 17 Abstract Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/No_17.jpg', N'Watermarks will not be present on final printed images.')
+GO
+
+CREATE TABLE [dbo].[wishlist](
+	[id] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	[productID] [int] NOT NULL,
+	[userID] [int] NOT NULL
+	);
+GO
