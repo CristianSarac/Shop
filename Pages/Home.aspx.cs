@@ -33,7 +33,7 @@ namespace Pages
                 if (!ConnectionClass.searchUser(oUser.email))
                 {
                     Debug.WriteLine("Nu lam gasit");
-                    user = new User(oUser.name, "1234", oUser.email, "user");
+                    user = new User(oUser.name, "rand0mPassWord", oUser.email, "user");
                     ConnectionClass.RegisterUser(user);
 
 

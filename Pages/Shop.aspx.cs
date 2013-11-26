@@ -4,81 +4,105 @@ using System.Text;
 using System.Web.UI.WebControls;
 using Entities;
 using System.Collections.Generic;
-
 using System.Diagnostics;
 using Facebook;
+
 
 namespace Pages
 {
     public partial class Pages_Shop : System.Web.UI.Page
     {
-        List<Product> lista = new List<Product>();
+        List<Product> listOfProducts = new List<Product>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!IsPostBack)
             {
-                DropDownList1.DataSource = ConnectionClass.GetProductTypes();
-                DropDownList1.DataBind();
+                Typeddl.DataSource = ConnectionClass.GetProductTypes();
+                Typeddl.DataBind();
                 Sizeddl.DataSource = ConnectionClass.GetProductSizes();
                 Sizeddl.DataBind();
             }
             if (Session["search"] != null)
             {
                 string keyword = Session["search"] as string;
-                lista = ConnectionClass.GetProductsByKeyword(keyword);
+                listOfProducts = ConnectionClass.GetProductsByKeyword(keyword);
                 Session["search"] = null;
-                repeater.DataSource = lista;
+                repeater.DataSource = listOfProducts;
                 repeater.DataBind();
             }
             else
             {
-                lista = ConnectionClass.GetAllProducts();
-                repeater.DataSource = lista;
+                listOfProducts = ConnectionClass.GetAllProducts();
+                repeater.DataSource = listOfProducts;
                 repeater.DataBind();
+                Typeddl.DataSource = ConnectionClass.GetProductTypes();
+                Typeddl.DataBind();
+                Sizeddl.DataSource = ConnectionClass.GetProductSizes();
+                Sizeddl.DataBind();
             }
-                
+
         }
 
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+
+        protected void Typeddl_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            List<Product> lista2 = new List<Product>();
+            List<Product> productsByType = new List<Product>();
             
-            foreach (Product p in lista)
+            foreach (Product p in listOfProducts)
             {
                
-                if (p.Type==DropDownList1.SelectedValue)
+                if (p.Type==Typeddl.SelectedValue)
                 {
-                    lista2.Add(p);
+                    productsByType.Add(p);
                     
+
                 }
             }
-            repeater.DataSource = lista2;
+            repeater.DataSource = productsByType;
             repeater.DataBind();
-            
+
         }
 
         protected void Sizeddl_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            List<Product> lista3 = new List<Product>();
+            List<Product> productsBySize = new List<Product>();
 
-            foreach (Product p in lista)
+            foreach (Product p in listOfProducts)
             {
 
-                if (p.Size == Sizeddl.SelectedValue && p.Type == DropDownList1.SelectedValue)
+                if (p.Size == Sizeddl.SelectedValue && p.Type == Typeddl.SelectedValue && Typeddl.SelectedValue=="Painting")
                 {
-                    lista3.Add(p);
+                    productsBySize.Add(p);
 
                 }
             }
-            repeater.DataSource = lista3;
+            repeater.DataSource = productsBySize;
             repeater.DataBind();
 
 
         }
+
+        protected void Button_ItemCommand(object source, RepeaterCommandEventArgs e)
+	{
+        Authenticate();
+	    Label id = (Label)e.Item.FindControl("lblId");
+        int user_id=(int)Session["user_id"];
+        Product toBeAdded=null;
+	    foreach(Product p in listOfProducts){
+            if (p.Id == int.Parse(id.Text))
+            {
+                toBeAdded = p;
+            }
+        }
+             ConnectionClass.AddToWishlist(toBeAdded,user_id);
+          
+             
+            
+	}
 
         #region Unused Code
 
@@ -260,16 +284,18 @@ namespace Pages
             ConnectionClass.AddOrders(orderList);
             Session["orders"] = null;
         }
+        #endregion
+
 
         //Check if user is logged in
         private void Authenticate()
         {
-            //if (Session["login"] == null)
-            //{
-            //    Response.Redirect("~/pages/account/login.aspx");
-            //}
-        } 
-        #endregion
 
+            if (Session["login"] == null)
+            {
+                Response.Redirect("~/pages/account/login.aspx");
+            }
+        } 
 }
+
 }

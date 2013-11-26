@@ -33,7 +33,7 @@
     float: right;
     width: 250px;
     height: 400px;
-    margin: 25px 10px 20px 10px;
+    margin: 20px 10px 20px 10px;
     padding: 10px;
     border: 1px solid #CCB598;
 }
@@ -157,9 +157,11 @@
     font-weight: bold;
     text-decoration: none;
 }
+
 .fb-share-button {
-    width:90px !important;
+    width: 90px !important;
 }
+
 .imgLeft {
     float: left;
     width: 240px;
@@ -321,7 +323,7 @@
     color: gray;
 }
 
-.ProductsReview {
+.ProductsDescription {
     margin: 0px 5px 5px 0px;
     font-weight: normal;
     font-size: 16px;
@@ -345,3 +347,113 @@
 .bxslider img {
     width: 100%;
 }
+
+/* ----------single product ------*/
+#single_product {
+    margin-bottom: 30px;
+}
+
+    #single_product img {
+        width: 30%;
+    }
+
+    #single_product table {
+        width: 68%;
+        float: right;
+    }
+
+        #single_product table td {
+            width: 80%;
+        }
+
+        #single_product table .td1 {
+            width: 20%;
+        }
+
+.single_product_review {
+    width: 100%;
+    border: 1px solid #CCB598;
+    border-bottom: none;
+}
+
+
+.btn_review {
+    float: right;
+    border: solid 1px #CCB598;
+    background: #CCB598;
+    padding: 5px 10px;
+    margin-top: 19px;
+    margin-right: -2px;
+}
+
+.single_product_review .user_info {
+    width: 20%;
+    float: left;
+    min-height: 100px;
+    height: 100%;
+    border-right: 1px solid #CCB598;
+}
+
+    .single_product_review .user_info h4 {
+        padding-left: 10px;
+        margin-top: 10px;
+    }
+
+.single_product_review .review {
+    margin-top: 10px;
+    width: 79%;
+    float: right;
+}
+
+.single_product_review:last-child {
+    border: 1px solid #CCB598;
+}
+
+.ratingStar {
+    height: 12px;
+    width: 12px;
+    margin-left: 2px;
+}
+
+.filledRatingStar {
+    background: url('../Images/FilledStar.png');
+}
+
+.emptyRatingStar {
+    background: url('../Images/EmptyStar.png');
+}
+
+.savedRatingStar {
+    background: green;
+}
+/*--------------------modal popup*/
+
+.modalBackground {
+    background-color: #ccc;
+    filter: alpha(opacity=90);
+    opacity: 0.8;
+}
+
+.modalPopup {
+    background-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #CCB598;
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 600px;
+    height: 250px;
+}
+
+    .modalPopup textarea {
+        width: 95%;
+        margin: 1%;
+    }
+
+    .modalPopup input {
+        border: solid 1px #CCB598;
+        background: #CCB598;
+        padding: 5px 10px;
+        width: 100px;
+        margin-left: 5px;
+    }

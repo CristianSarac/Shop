@@ -136,7 +136,8 @@
 
     <table class="login">
         <tr>
-            <td class="text">Login:</td>
+            <td class="text">Login with email:</td>
+            
             <td>
                 <asp:TextBox ID="txtLogin" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
@@ -174,9 +175,6 @@
     <div style="margin-top: 10px;">
         <div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1" data-scope="email"></div>
         <a href="#" style="display: none;" id="bt">Login with Facebook</a>
-
-
-
         <div id="gConnect">
             <button class="g-signin"
                 data-scope="https://www.googleapis.com/auth/plus.login  https://www.googleapis.com/auth/userinfo.email  https://www.googleapis.com/auth/userinfo.profile"

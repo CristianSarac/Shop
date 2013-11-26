@@ -21,6 +21,8 @@ public partial class Pages_Account_Login : System.Web.UI.Page
             //Store login variables in session
             Session["login"] = user.Name;
             Session["type"] = user.Type;
+            Session["user_id"] = user.Id;
+            Session["email"] = user.Email;
 
             Response.Redirect("~/Pages/Home.aspx");
         }
