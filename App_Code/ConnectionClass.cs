@@ -254,7 +254,7 @@ public static class ConnectionClass
     {
         List<Product> list = new List<Product>();
 
-        string query = string.Format("SELECT * FROM products,wishlist WHERE wishlist.user_ID='{0}' AND products.id=wishlist.product_ID", user_id);
+        string query = string.Format("SELECT * FROM products,wishlist WHERE wishlist.userID='{0}' AND products.id=wishlist.productID", user_id);
 
         try
         {
@@ -287,7 +287,7 @@ public static class ConnectionClass
 
     public static void RemoveFromWishlist(Product product, int user_id)
     {
-        string query = @"DELETE FROM wishlist WHERE user_ID=@userID AND product_ID=@productID";
+        string query = @"DELETE FROM wishlist WHERE userID=@userID AND productID=@productID";
         command.CommandText = query;
         command.Parameters.Add(new SqlParameter("@userID", user_id));
         command.Parameters.Add(new SqlParameter("@productID", product.Id));

@@ -28,7 +28,7 @@
         <asp:DropDownList ID="Typeddl" runat="server" AutoPostBack="true" OnSelectedIndexChanged="Typeddl_SelectedIndexChanged" />
         <asp:Label ID="lblSize" runat="server" Text="Size: " />
         <asp:DropDownList ID="Sizeddl" runat="server" AutoPostBack="true" OnSelectedIndexChanged="Sizeddl_SelectedIndexChanged" />
-
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
         <asp:Repeater ID="repeater" runat="server" OnItemCommand="Button_ItemCommand">
 
             <HeaderTemplate>
@@ -52,7 +52,11 @@
                                 <asp:Label ID="lblDescription" CssClass="ProductsDescription" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "description") %>'></asp:Label><br />
                                 <asp:Label ID="lblPrice" runat="server" CssClass="ProductsPrice" Text='<%# String.Format("{0:c}", DataBinder.Eval(Container.DataItem, "price")) %>' Font-Bold="true"></asp:Label>
                                 <br />
+                                <asp:UpdatePanel runat="server">
+                                    <ContentTemplate>
                                  <asp:Button ID="btnAddToWishlist" runat="server" CommandName="ID" Text="Add to Wishlist" />
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
                             </div>
                             <div id="Div1" class="paypal" runat="server">
                                 <script type="text/javascript"

@@ -18,9 +18,7 @@
         src="../JavaScript/paypal-button-minicart.min.js"></script> 
      <div class="fb-share-button" data-href="http://www.google.com" data-type="icon_link"></div>
     <div class="g-plus" data-action="share" data-annotation="none"></div>
-   
-    <asp:Panel ID="pnlProducts" runat="server">
-     
+    <asp:Panel ID="pnlProducts" runat="server"> 
         <asp:Repeater ID="repeater" runat="server" OnItemCommand="Button_ItemCommand">
             <HeaderTemplate>
                 <table class="shop-tabel" cellpadding="4" cellspacing="0" border="0">
@@ -35,7 +33,7 @@
                                 <asp:Label ID="lblId" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "id") %>' Visible="false"></asp:Label>
                                 <asp:Label ID="lblName" CssClass="ProductsName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "name") %>'></asp:Label>
                                 <br />
-                                <asp:Label ID="lblDescription" CssClass="ProductsReview" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "review") %>'></asp:Label><br />
+                                <asp:Label ID="lblDescription" CssClass="ProductsReview" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "description") %>'></asp:Label><br />
                                 <asp:Label ID="lblPrice" runat="server" CssClass="ProductsPrice" Text='<%# String.Format("{0:c}", DataBinder.Eval(Container.DataItem, "price")) %>' Font-Bold="true"></asp:Label>
                                 <br />
                                  <asp:Button ID="btnRemoveFromWishlist" runat="server" CommandName="ID" Text="Remove from Wishlist" />
