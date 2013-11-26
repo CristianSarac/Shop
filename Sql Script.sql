@@ -183,6 +183,7 @@ CREATE TABLE [dbo].[products](
 GO
 SET ANSI_PADDING OFF
 GO
+<<<<<<< HEAD
 INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [description]) VALUES (N'Crow Abstract Giclee Print On Canvas', N'Painting', 310.00, N'Mike Lea', N'30x40', N'../Images/Product/crow.jpg', N'Watermarks will not be present on final printed images.')
 INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [description]) VALUES (N'Chibi Cthulhu Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/Chibi-Cthulhu.jpg', N'Chibi Cthulhu is sad.... he is sad because he is homeless.... you could give him a home..... unless of course your heart is cold and dead like the pits of Rlyeh.')
 INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [description]) VALUES (N'No. 17 Abstract Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/No_17.jpg', N'Watermarks will not be present on final printed images.')
@@ -200,3 +201,16 @@ CREATE TABLE [dbo].[review](
 INSERT [dbo].[review] VALUES ('e de trompeta', 5,1,1 );
 INSERT [dbo].[review] VALUES ('e de trompeta2', 5,2,1 );
 INSERT [dbo].[review] VALUES ('e de trompeta 1-2', 5,1,2 );
+=======
+INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [review]) VALUES (N'Crow Abstract Giclee Print On Canvas', N'Painting', 310.00, N'Mike Lea', N'30x40', N'../Images/Product/crow.jpg', N'Watermarks will not be present on final printed images.')
+INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [review]) VALUES (N'Chibi Cthulhu Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/Chibi-Cthulhu.jpg', N'Chibi Cthulhu is sad.... he is sad because he is homeless.... you could give him a home..... unless of course your heart is cold and dead like the pits of Rlyeh.')
+INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [review]) VALUES (N'No. 17 Abstract Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/No_17.jpg', N'Watermarks will not be present on final printed images.')
+GO
+
+CREATE TABLE [dbo].[wishlist](
+	[id] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	[productID] [int] NOT NULL,
+	[userID] [int] NOT NULL
+	);
+GO
+>>>>>>> e5d729ede1bcfa9561f51011323eca56ff65a48f

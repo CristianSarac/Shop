@@ -29,6 +29,7 @@ public static class ConnectionClass
 
         string query = string.Format("SELECT DISTINCT type FROM products ");
 
+
         try
         {
             conn.Open();
@@ -231,6 +232,77 @@ public static class ConnectionClass
             command.Parameters.Clear();
         }
     }
+
+    public static void AddToWishlist(Product product, int user_id)
+    {
+        string query = @"INSERT INTO wishlist VALUES (@productID, @userID)";
+        command.CommandText = query;
+        command.Parameters.Add(new SqlParameter("@productID", product.Id));
+        command.Parameters.Add(new SqlParameter("@userID", user_id));
+        try
+        {
+            conn.Open();
+            command.ExecuteNonQuery();
+        }
+        finally
+        {
+            conn.Close();
+            command.Parameters.Clear();
+        }
+    }
+    public static List<Product> GetWishlist(int user_id)
+    {
+        List<Product> list = new List<Product>();
+
+        string query = string.Format("SELECT * FROM products,wishlist WHERE wishlist.user_ID='{0}' AND products.id=wishlist.product_ID", user_id);
+
+        try
+        {
+            conn.Open();
+            command.CommandText = query;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+
+                int id = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                string type = reader.GetString(2);
+                double price = reader.GetDouble(3);
+                string artist = reader.GetString(4);
+                string size = reader.GetString(5);
+                string image = reader.GetString(6);
+                string review = reader.GetString(7);
+
+                Product product = new Product(id, name, type, price, artist, size, image, review);
+                list.Add(product);
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return list;
+    }
+
+    public static void RemoveFromWishlist(Product product, int user_id)
+    {
+        string query = @"DELETE FROM wishlist WHERE user_ID=@userID AND product_ID=@productID";
+        command.CommandText = query;
+        command.Parameters.Add(new SqlParameter("@userID", user_id));
+        command.Parameters.Add(new SqlParameter("@productID", product.Id));
+        try
+        {
+            conn.Open();
+            command.ExecuteNonQuery();
+        }
+        finally
+        {
+            conn.Close();
+            command.Parameters.Clear();
+        }
+    }
+
     #endregion
 
     #region Users
@@ -256,7 +328,7 @@ public static class ConnectionClass
                 {
                     //Passwords match. Login and password data are known to us.
                     //Retrieve further user data from the database
-                    query = string.Format("SELECT email, user_type FROM users WHERE name = '{0}'", name);
+                    query = string.Format("SELECT email, user_type,id FROM users WHERE name = '{0}'", name);
                     command.CommandText = query;
 
                     SqlDataReader reader = command.ExecuteReader();
@@ -266,8 +338,9 @@ public static class ConnectionClass
                     {
                         string email = reader.GetString(0);
                         string type = reader.GetString(1);
+                        int id = reader.GetInt32(2);
 
-                        user = new User(name, password, email, type);
+                        user = new User(id, name, password, email, type);
                     }
                     return user;
                 }
