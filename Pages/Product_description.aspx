@@ -59,11 +59,21 @@
         PopupControlID="Panel1"
         BackgroundCssClass="modalBackground"
         TargetControlID="btnComment"
-        CancelControlID="btnClose"
-        >
+        CancelControlID="btnClose">
     </ajaxToolkit:ModalPopupExtender>
     <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" Style="display: none">
         &nbsp;&nbsp;Please add your review:<br />
+
+        <ajaxToolkit:Rating ID="Rating2" runat="server"
+            
+            CurrentRating='2'
+            MaxRating="5"
+            StarCssClass="ratingStar"
+            WaitingStarCssClass="savedRatingStar"
+            FilledStarCssClass="filledRatingStar"
+            EmptyStarCssClass="emptyRatingStar"
+            OnChanged="Rating_Changed" />
+
         <asp:TextBox ID="tbxReview" runat="server" TextMode="MultiLine" Rows="11"></asp:TextBox>
         <br />
         <asp:Button ID="btnClose" runat="server" Text="Close" />
@@ -90,7 +100,7 @@
                         WaitingStarCssClass="savedRatingStar"
                         FilledStarCssClass="filledRatingStar"
                         EmptyStarCssClass="emptyRatingStar"
-                        OnChanged="Rating_Changed" />
+                        OnChanged="Rating_Changed1" />
                     <asp:Label ID="lblReview" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "reviewtext") %>'></asp:Label>
                 </div>
 

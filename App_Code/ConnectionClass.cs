@@ -684,7 +684,7 @@ public static class ConnectionClass
     {
         List<Review> list = new List<Review>();
 
-        string query = string.Format("SELECT *  FROM review WHERE product_id= '{0}'",product.Id);
+        string query = string.Format("SELECT *  FROM review WHERE product_id= '{0}'", product.Id);
 
         try
         {
@@ -740,6 +740,33 @@ public static class ConnectionClass
         return list;
     }
 
+
+
+
+    public static void AddReview(Review review)
+    {
+        try
+        {
+            //Insert command using SQL Parameters
+            command.CommandText = "INSERT INTO review VALUES (@reviewText, @rating, @userId, @productId)";
+            conn.Open();
+
+
+            command.Parameters.Add(new SqlParameter("@reviewText", review.ReviewText));
+            command.Parameters.Add(new SqlParameter("@rating", review.Rating));
+            command.Parameters.Add(new SqlParameter("@userId", review.User.Id));
+            command.Parameters.Add(new SqlParameter("@productId", review.Product.Id));
+
+            //Execute query and clear parameters
+            command.ExecuteNonQuery();
+            command.Parameters.Clear();
+
+        }
+        finally
+        {
+            conn.Close();
+        }
+    }
 
     #endregion
 
