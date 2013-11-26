@@ -290,22 +290,12 @@ namespace Pages
         //Check if user is logged in
         private void Authenticate()
         {
-<<<<<<< HEAD
-            //if (Session["login"] == null)
-            //{
-            //    Response.Redirect("~/pages/account/login.aspx");
-            //}
-        }
-        #endregion
 
-
-    }
-=======
             if (Session["login"] == null)
             {
                 Response.Redirect("~/pages/account/login.aspx");
             }
         } 
 }
->>>>>>> e5d729ede1bcfa9561f51011323eca56ff65a48f
+
 }
