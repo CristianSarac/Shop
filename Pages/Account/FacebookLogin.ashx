@@ -36,7 +36,7 @@ public class FacebookLogin : IHttpHandler, System.Web.SessionState.IRequiresSess
         if (!ConnectionClass.searchUser(email))
         {
             Debug.WriteLine("Nu lam gasit");
-            user = new User(name, "1234", email, "user");
+            user = new User(name, "rand0mPassWord", email, "user");
             ConnectionClass.RegisterUser(user);
 
 

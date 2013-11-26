@@ -43,9 +43,11 @@
 
                         <div class="details">
                             <div class="alignLeft">
-                                <asp:Label ID="lblName" CssClass="ProductsName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "name") %>'></asp:Label>
+                                <a href="Product_description.aspx?id=<%# DataBinder.Eval(Container.DataItem, "id") %>">
+                                    <asp:Label ID="lblName" CssClass="ProductsName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "name") %>'></asp:Label>
+                                </a>
                                 <br />
-                                <asp:Label ID="lblDescription" CssClass="ProductsReview" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "review") %>'></asp:Label><br />
+                                <asp:Label ID="lblDescription" CssClass="ProductsDescription" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "description") %>'></asp:Label><br />
                                 <asp:Label ID="lblPrice" runat="server" CssClass="ProductsPrice" Text='<%# String.Format("{0:c}", DataBinder.Eval(Container.DataItem, "price")) %>' Font-Bold="true"></asp:Label>
                                 <br />
                             </div>

@@ -15,7 +15,8 @@ public static class ConnectionClass
 
     static ConnectionClass()
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["productConnection"].ToString();
+        string connectionString = ConfigurationManager.ConnectionStrings["productConnection"].ToString() + ";MultipleActiveResultSets=True";
+        Debug.WriteLine(connectionString);
         conn = new SqlConnection(connectionString);
         command = new SqlCommand("", conn);
     }
@@ -25,7 +26,7 @@ public static class ConnectionClass
     public static ArrayList GetProductTypes()
     {
         ArrayList list = new ArrayList();
-        
+
         string query = string.Format("SELECT DISTINCT type FROM products ");
 
         try
@@ -35,7 +36,7 @@ public static class ConnectionClass
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                
+
                 string type = reader.GetString(0);
                 list.Add(type);
             }
@@ -83,13 +84,13 @@ public static class ConnectionClass
         try
         {
             conn.Open();
-            
+
             command.CommandText = query;
             SqlDataReader reader = command.ExecuteReader();
-           
+
             while (reader.Read())
             {
-                
+
                 int id = reader.GetInt32(0);
                 string name = reader.GetString(1);
                 string type = reader.GetString(2);
@@ -113,7 +114,7 @@ public static class ConnectionClass
 
     public static List<Product> GetAllProducts()
     {
-       List<Product> list = new List<Product>();
+        List<Product> list = new List<Product>();
 
         string query = string.Format("SELECT * FROM products ");
 
@@ -216,7 +217,7 @@ public static class ConnectionClass
     {
         string query = string.Format(
             @"INSERT INTO products VALUES ('{0}', '{1}', @prices, '{2}', '{3}','{4}', '{5}')",
-            product.Name, product.Type, product.Artist, product.Size, product.Image, product.Review);
+            product.Name, product.Type, product.Artist, product.Size, product.Image, product.Description);
         command.CommandText = query;
         command.Parameters.Add(new SqlParameter("@prices", product.Price));
         try
@@ -355,7 +356,7 @@ public static class ConnectionClass
 
     public static bool searchUser(String email)
     {
-        string query = string.Format("SELECT COUNT(*) FROM users WHERE email = '{0}'",email);
+        string query = string.Format("SELECT COUNT(*) FROM users WHERE email = '{0}'", email);
         command.CommandText = query;
 
         try
@@ -373,7 +374,7 @@ public static class ConnectionClass
                 Debug.WriteLine("Exista");
                 return true;
             }
-           
+
         }
         finally
         {
@@ -395,6 +396,38 @@ public static class ConnectionClass
             while (reader.Read())
             {
                 int id = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                string password = reader.GetString(2);
+                string userEmail = reader.GetString(3);
+                string userType = reader.GetString(4);
+
+                user = new User(id, name, password, userEmail, userType);
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+        }
+        finally
+        {
+            conn.Close();
+        }
+        return user;
+    }
+    public static User GetUserById(int id)
+    {
+        string query = string.Format("SELECT * FROM users WHERE id = '{0}'", id);
+        command.CommandText = query;
+        User user = null;
+
+        try
+        {
+            conn.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+
                 string name = reader.GetString(1);
                 string password = reader.GetString(2);
                 string userEmail = reader.GetString(3);
@@ -570,6 +603,75 @@ public static class ConnectionClass
     }
 
     #endregion
+
+    #region Review
+
+
+    public static List<Review> GetProductReviews(Product product)
+    {
+        List<Review> list = new List<Review>();
+
+        string query = string.Format("SELECT *  FROM review WHERE product_id= '{0}'",product.Id);
+
+        try
+        {
+            conn.Open();
+            command.CommandText = query;
+
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+
+                string reviewText = reader.GetString(1);
+                int rating = reader.GetInt32(2);
+                int user_id = reader.GetInt32(3);
+
+                User user = null;
+
+                //------ get user by id--------
+                string query2 = string.Format("SELECT * FROM users WHERE id = '{0}'", user_id);
+                SqlCommand cmd2 = new SqlCommand("", conn);
+                cmd2.CommandText = query2;
+
+
+                try
+                {
+                    SqlDataReader reader2 = cmd2.ExecuteReader();
+                    while (reader2.Read())
+                    {
+
+                        string name = reader2.GetString(1);
+                        string password = reader2.GetString(2);
+                        string userEmail = reader2.GetString(3);
+                        string userType = reader2.GetString(4);
+
+                        user = new User(user_id, name, password, userEmail, userType);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                // --- user retrived
+
+
+                Review r = new Review(user, product, reviewText, rating);
+                list.Add(r);
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return list;
+    }
+
+
+    #endregion
+
+
+
 
     #region Charts
     public static DataTable GetChartData(string query)

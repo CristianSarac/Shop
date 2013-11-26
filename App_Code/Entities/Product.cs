@@ -7,9 +7,9 @@
     public string Artist { get; set; }
     public string Size { get; set; }
     public string Image { get; set; }
-    public string Review { get; set; }
+    public string Description { get; set; }
 
-    public Product(int id, string name, string type, double price, string artist, string size, string image, string review)
+    public Product(int id, string name, string type, double price, string artist, string size, string image, string description)
     {
         Id = id;
         Name = name;
@@ -18,10 +18,10 @@
         Artist = artist;
         Size = size;
         Image = image;
-        Review = review;
+        Description = description;
     }
 
-    public Product(string name, string type, double price, string artist, string size, string image, string review)
+    public Product(string name, string type, double price, string artist, string size, string image, string description)
     {
         Name = name;
         Type = type;
@@ -29,6 +29,6 @@
         Artist = artist;
         Size = size;
         Image = image;
-        Review = review;
+        Description = description;
     }
 }

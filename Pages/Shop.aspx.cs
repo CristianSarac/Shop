@@ -16,7 +16,7 @@ namespace Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!IsPostBack)
             {
                 DropDownList1.DataSource = ConnectionClass.GetProductTypes();
@@ -38,26 +38,29 @@ namespace Pages
                 repeater.DataSource = lista;
                 repeater.DataBind();
             }
-                
+
         }
+
+        
+
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             List<Product> lista2 = new List<Product>();
-            
+
             foreach (Product p in lista)
             {
-               
-                if (p.Type==DropDownList1.SelectedValue)
+
+                if (p.Type == DropDownList1.SelectedValue)
                 {
                     lista2.Add(p);
-                    
+
                 }
             }
             repeater.DataSource = lista2;
             repeater.DataBind();
-            
+
         }
 
         protected void Sizeddl_SelectedIndexChanged(object sender, EventArgs e)
@@ -268,8 +271,9 @@ namespace Pages
             //{
             //    Response.Redirect("~/pages/account/login.aspx");
             //}
-        } 
+        }
         #endregion
 
-}
+
+    }
 }

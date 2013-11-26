@@ -174,7 +174,7 @@ CREATE TABLE [dbo].[products](
 	[artist] [varchar](50) NOT NULL,
 	[size] [varchar](50) NOT NULL,
 	[image] [varchar](255) NULL,
-	[review] [text] NOT NULL,
+	[description] [text] NOT NULL,
  CONSTRAINT [PK_products_1] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -183,6 +183,20 @@ CREATE TABLE [dbo].[products](
 GO
 SET ANSI_PADDING OFF
 GO
-INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [review]) VALUES (N'Crow Abstract Giclee Print On Canvas', N'Painting', 310.00, N'Mike Lea', N'30x40', N'../Images/Product/crow.jpg', N'Watermarks will not be present on final printed images.')
-INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [review]) VALUES (N'Chibi Cthulhu Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/Chibi-Cthulhu.jpg', N'Chibi Cthulhu is sad.... he is sad because he is homeless.... you could give him a home..... unless of course your heart is cold and dead like the pits of Rlyeh.')
-INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [review]) VALUES (N'No. 17 Abstract Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/No_17.jpg', N'Watermarks will not be present on final printed images.')
+INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [description]) VALUES (N'Crow Abstract Giclee Print On Canvas', N'Painting', 310.00, N'Mike Lea', N'30x40', N'../Images/Product/crow.jpg', N'Watermarks will not be present on final printed images.')
+INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [description]) VALUES (N'Chibi Cthulhu Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/Chibi-Cthulhu.jpg', N'Chibi Cthulhu is sad.... he is sad because he is homeless.... you could give him a home..... unless of course your heart is cold and dead like the pits of Rlyeh.')
+INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [description]) VALUES (N'No. 17 Abstract Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/No_17.jpg', N'Watermarks will not be present on final printed images.')
+
+
+
+CREATE TABLE [dbo].[review](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[review_text] [varchar](50) NOT NULL,
+	[rating] [int] NOT NULL,
+	[user_id] [int] NOT NULL FOREIGN KEY REFERENCES users(id),
+	[product_id] [int] NOT NULL FOREIGN KEY REFERENCES products(id),
+	)
+	
+INSERT [dbo].[review] VALUES ('e de trompeta', 5,1,1 );
+INSERT [dbo].[review] VALUES ('e de trompeta2', 5,2,1 );
+INSERT [dbo].[review] VALUES ('e de trompeta 1-2', 5,1,2 );
