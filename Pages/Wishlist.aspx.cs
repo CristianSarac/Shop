@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;    
+using System.Web.UI.WebControls;
 
 public partial class Pages_Wishlist : System.Web.UI.Page
 {
@@ -15,7 +15,7 @@ public partial class Pages_Wishlist : System.Web.UI.Page
         listOfProducts = ConnectionClass.GetWishlist(user_id);
         repeater.DataSource = listOfProducts;
         repeater.DataBind();
-      
+
     }
 
 
@@ -35,16 +35,16 @@ public partial class Pages_Wishlist : System.Web.UI.Page
         ConnectionClass.RemoveFromWishlist(toBeRemoved, user_id);
         repeater.DataSource = listOfProducts;
         repeater.DataBind();
-        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Item was removed from your wishlist')", true);
+        //ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Add button clicked');", true);
     }
 
     //Check if user is logged in
     private void Authenticate()
     {
-        
+
         if (Session["login"] == null)
         {
             Response.Redirect("~/pages/account/login.aspx");
         }
-    } 
+    }
 };
