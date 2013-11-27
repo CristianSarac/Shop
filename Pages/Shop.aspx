@@ -16,11 +16,13 @@
     <script type="text/javascript"
         src="../JavaScript/paypal-button-minicart.min.js"></script>
     <asp:Label ID="lblResult" runat="server" Text="Label" Visible="False"></asp:Label>
-    <br />
+
+  
+   
     
-    <br />
     <asp:Label ID="lblError" runat="server"></asp:Label>
     <asp:Panel ID="pnlProducts" runat="server">
+        <h1>Filter through our products</h1>
         <asp:Label ID="lblCategory" runat="server" Text="Category: " />
         <asp:DropDownList ID="Typeddl" runat="server" AutoPostBack="true" OnSelectedIndexChanged="Typeddl_SelectedIndexChanged" />
         <asp:Label ID="lblSize" runat="server" Text="Size: " />
@@ -39,21 +41,21 @@
                         <div class="details">
                             <div class="alignLeft">
 
-                                <a href="Product_description.aspx?id=<%# DataBinder.Eval(Container.DataItem, "id") %>">
-                                    <asp:Label ID="lblName" CssClass="ProductsName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "name") %>'></asp:Label>
+                                <a href="Product_description.aspx?id=<%# DataBinder.Eval(Container.DataItem, "id") %>" class="ProductsName">
+                                    <asp:Label ID="lblName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "name") %>'></asp:Label>
                                 </a>
 
                                 <asp:Label ID="lblId" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "id") %>' Visible="false"></asp:Label>
-                               
+
                                 <br />
                                 <asp:Label ID="lblDescription" CssClass="ProductsDescription" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "description") %>'></asp:Label><br />
                                 <asp:Label ID="lblPrice" runat="server" CssClass="ProductsPrice" Text='<%# String.Format("{0:c}", DataBinder.Eval(Container.DataItem, "price")) %>' Font-Bold="true"></asp:Label>
                                 <br />
                                 <asp:UpdatePanel runat="server">
                                     <ContentTemplate>
-                                 <asp:Button ID="btnAddToWishlist" runat="server" CommandName="ID" Text="Add to Wishlist" />
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
+                                        <asp:Button ID="btnAddToWishlist" runat="server" CommandName="ID" Text="Add to Wishlist" />
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                             <div id="Div1" class="paypal" runat="server">
                                 <script type="text/javascript"
@@ -71,15 +73,15 @@
 
                         </div>
 
-                        <!--facebook share -->
+                        <!--facebook share 
                         <div class="fb-share-button" data-href="http://www.google.com" data-type="icon_link"></div>
                         <!-- END OF facebook share -->
 
 
 
-                        <!-- Place this tag where you want the share button to render. -->
+                        <!-- Place this tag where you want the share button to render. 
                         <div class="g-plus" data-action="share" data-annotation="none"></div>
-                        <div class="clearfix"></div>
+                        <div class="clearfix"></div>-->
                     </td>
                 </tr>
             </ItemTemplate>
