@@ -16,8 +16,8 @@
     <script type="text/javascript" src="../JavaScript/minicart.min.js"></script>
     <script type="text/javascript"
         src="../JavaScript/paypal-button-minicart.min.js"></script> 
-     <div class="fb-share-button" data-href="http://www.google.com" data-type="icon_link"></div>
-    <div class="g-plus" data-action="share" data-annotation="none"></div>
+     <div class="fb-share-button" data-href="http://oakleaproductions.somee.com/Pages/Wishlist.aspx" data-type="icon_link"></div>
+    <div class="g-plus" data-action="share" data-annotation="none" data-href="http://oakleaproductions.somee.com/Pages/Wishlist.aspx"></div>
     <asp:Panel ID="pnlProducts" runat="server"> 
         <asp:Repeater ID="repeater" runat="server" OnItemCommand="Button_ItemCommand">
             <HeaderTemplate>
