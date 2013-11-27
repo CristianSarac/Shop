@@ -1,4 +1,4 @@
-IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'ProductDB')
+﻿IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'ProductDB')
 DROP DATABASE [ProductDB]
 GO
 
@@ -188,7 +188,7 @@ INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [de
 INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [description]) VALUES (N'Chibi Cthulhu Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/Chibi-Cthulhu.jpg', N'Chibi Cthulhu is sad.... he is sad because he is homeless.... you could give him a home..... unless of course your heart is cold and dead like the pits of Rlyeh.')
 INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [description]) VALUES (N'No. 17 Abstract Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/No_17.jpg', N'Watermarks will not be present on final printed images.')
 
-
+Go
 
 CREATE TABLE [dbo].[review](
 	[id] [int] IDENTITY(1,1) NOT NULL,
@@ -198,14 +198,14 @@ CREATE TABLE [dbo].[review](
 	[product_id] [int] NOT NULL FOREIGN KEY REFERENCES products(id),
 	)
 	
+
 INSERT [dbo].[review] VALUES ('e de trompeta', 5,1,1 );
 
 INSERT [dbo].[review] VALUES ('e de trompeta 1-2', 5,1,2 );
 
-INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [description]) VALUES (N'Crow Abstract Giclee Print On Canvas', N'Painting', 310.00, N'Mike Lea', N'30x40', N'../Images/Product/crow.jpg', N'Watermarks will not be present on final printed images.')
-INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [description]) VALUES (N'Chibi Cthulhu Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/Chibi-Cthulhu.jpg', N'Chibi Cthulhu is sad.... he is sad because he is homeless.... you could give him a home..... unless of course your heart is cold and dead like the pits of Rlyeh.')
-INSERT [dbo].[products] ([name], [type], [price], [artist], [size], [image], [description]) VALUES (N'No. 17 Abstract Giclee Print On Canvas', N'Painting', 85, N'Mike Lea', N'12x12', N'../Images/Product/No_17.jpg', N'Watermarks will not be present on final printed images.')
-GO
+
+
+
 
 CREATE TABLE [dbo].[wishlist](
 	[id] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
@@ -213,4 +213,5 @@ CREATE TABLE [dbo].[wishlist](
 	[userID] [int] NOT NULL
 	);
 GO
+
 

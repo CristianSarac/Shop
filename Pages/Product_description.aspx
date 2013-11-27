@@ -59,11 +59,20 @@
         PopupControlID="Panel1"
         BackgroundCssClass="modalBackground"
         TargetControlID="btnComment"
-        CancelControlID="btnClose"
-        >
+        CancelControlID="btnClose">
     </ajaxToolkit:ModalPopupExtender>
     <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" Style="display: none">
         &nbsp;&nbsp;Please add your review:<br />
+
+        <ajaxToolkit:Rating ID="Rating2" runat="server"
+            CurrentRating='2'
+            MaxRating="5"
+            StarCssClass="ratingStar"
+            WaitingStarCssClass="savedRatingStar"
+            FilledStarCssClass="filledRatingStar"
+            EmptyStarCssClass="emptyRatingStar"
+            OnChanged="Rating_Changed" />
+
         <asp:TextBox ID="tbxReview" runat="server" TextMode="MultiLine" Rows="11"></asp:TextBox>
         <br />
         <asp:Button ID="btnClose" runat="server" Text="Close" />
@@ -74,14 +83,16 @@
 
     <asp:Repeater ID="repeater" runat="server">
         <HeaderTemplate>
+            <div class="reviews">
         </HeaderTemplate>
         <ItemTemplate>
             <div class="single_product_review">
+
+
                 <div class="user_info">
                     <h4>By: 
                         <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "user.name") %>'></asp:Label></h4>
-                </div>
-                <div class="review">
+
                     <ajaxToolkit:Rating ID="Rating" runat="server"
                         ReadOnly="true"
                         CurrentRating='<%# DataBinder.Eval(Container.DataItem, "rating") %>'
@@ -90,14 +101,17 @@
                         WaitingStarCssClass="savedRatingStar"
                         FilledStarCssClass="filledRatingStar"
                         EmptyStarCssClass="emptyRatingStar"
-                        OnChanged="Rating_Changed" />
-                    <asp:Label ID="lblReview" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "reviewtext") %>'></asp:Label>
+                        OnChanged="Rating_Changed1" />
+                    <div style="clear:both;float:none;"></div>
                 </div>
+                <asp:Label ID="lblReview" CssClass="review" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "reviewtext") %>'></asp:Label>
+
 
                 <div class="clearfix"></div>
             </div>
         </ItemTemplate>
         <FooterTemplate>
+            </div>
         </FooterTemplate>
     </asp:Repeater>
 </asp:Content>
