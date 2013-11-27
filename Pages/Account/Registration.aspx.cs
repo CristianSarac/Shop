@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 public partial class Pages_Account_Registration : System.Web.UI.Page
 {
@@ -13,5 +14,26 @@ public partial class Pages_Account_Registration : System.Web.UI.Page
 
         //Register the user and return a result message
         lblResult.Text = ConnectionClass.RegisterUser(user);
+        if (!lblResult.Text.Equals("A user with this email already exists"))
+        {
+            User user1 = ConnectionClass.GetUserByEmail(user.Email);
+
+
+            ConnectionClass.LoginUser(user1.Email, user1.Password);
+            if (user != null)
+            {
+                //Store login variables in session
+                Session["login"] = user.Name;
+                Session["type"] = user.Type;
+                Session["user_id"] = user.Id;
+                Session["email"] = user.Email;
+
+                Response.Redirect("~/Pages/Home.aspx");
+            }
+        }
+        
+
+        
+       
     }
 }

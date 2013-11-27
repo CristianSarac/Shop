@@ -15,14 +15,10 @@
     <script type="text/javascript" src="../JavaScript/minicart.min.js"></script>
     <script type="text/javascript"
         src="../JavaScript/paypal-button-minicart.min.js"></script>
-    <asp:Label ID="lblResult" runat="server" Text="Label" Visible="False"></asp:Label>
-
-  
    
-    
-    <asp:Label ID="lblError" runat="server"></asp:Label>
+
     <asp:Panel ID="pnlProducts" runat="server">
-        <h1>Filter through our products</h1>
+        <h1><asp:Label ID="lblTitle" runat="server" Text="Filter through our products" Visible="True"></asp:Label></h1>
         <asp:Label ID="lblCategory" runat="server" Text="Category: " />
         <asp:DropDownList ID="Typeddl" runat="server" AutoPostBack="true" OnSelectedIndexChanged="Typeddl_SelectedIndexChanged" />
         <asp:Label ID="lblSize" runat="server" Text="Size: " />

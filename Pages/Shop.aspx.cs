@@ -32,11 +32,17 @@ namespace Pages
             }
             if (Session["search"] != null)
             {
+               
                 string keyword = Session["search"] as string;
                 listOfProducts = ConnectionClass.GetProductsByKeyword(keyword);
                 Session["search"] = null;
                 repeater.DataSource = listOfProducts;
                 repeater.DataBind();
+                lblTitle.Text = listOfProducts.Count + " results for "+keyword;
+                lblCategory.Visible = false;
+                Typeddl.Visible = false;
+                lblSize.Visible = false;
+                Sizeddl.Visible = false;
             }
             else
             {

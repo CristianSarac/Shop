@@ -80,7 +80,7 @@ public static class ConnectionClass
     {
         List<Product> list = new List<Product>();
         Debug.WriteLine(keyword);
-        string query = string.Format("SELECT * FROM products WHERE name LIKE '%{0}%' OR artist LIKE '%{0}%' OR type LIKE '%{0}%' OR review LIKE '%{0}%' ", keyword);
+        string query = string.Format("SELECT * FROM products WHERE name LIKE '%{0}%' OR artist LIKE '%{0}%' OR type LIKE '%{0}%' OR description LIKE '%{0}%' ", keyword);
 
         try
         {
@@ -99,9 +99,9 @@ public static class ConnectionClass
                 string artist = reader.GetString(4);
                 string size = reader.GetString(5);
                 string image = reader.GetString(6);
-                string review = reader.GetString(7);
+                string description = reader.GetString(7);
 
-                Product product = new Product(id, name, type, price, artist, size, image, review);
+                Product product = new Product(id, name, type, price, artist, size, image, description);
                 list.Add(product);
             }
         }
@@ -134,9 +134,9 @@ public static class ConnectionClass
                 string artist = reader.GetString(4);
                 string size = reader.GetString(5);
                 string image = reader.GetString(6);
-                string review = reader.GetString(7);
+                string description = reader.GetString(7);
 
-                Product product = new Product(id, name, type, price, artist, size, image, review);
+                Product product = new Product(id, name, type, price, artist, size, image, description);
                 list.Add(product);
             }
         }
@@ -168,9 +168,9 @@ public static class ConnectionClass
                 string artist = reader.GetString(4);
                 string size = reader.GetString(5);
                 string image = reader.GetString(6);
-                string review = reader.GetString(7);
+                string description = reader.GetString(7);
 
-                Product product = new Product(id, name, type, price, artist, size, image, review);
+                Product product = new Product(id, name, type, price, artist, size, image, description);
                 list.Add(product);
             }
         }
@@ -201,9 +201,9 @@ public static class ConnectionClass
                 string artist = reader.GetString(4);
                 string size = reader.GetString(5);
                 string image = reader.GetString(6);
-                string review = reader.GetString(7);
+                string description = reader.GetString(7);
 
-                product = new Product(name, type, price, artist, size, image, review);
+                product = new Product(name, type, price, artist, size, image, description);
             }
         }
         finally
@@ -271,9 +271,9 @@ public static class ConnectionClass
                 string artist = reader.GetString(4);
                 string size = reader.GetString(5);
                 string image = reader.GetString(6);
-                string review = reader.GetString(7);
+                string description = reader.GetString(7);
 
-                Product product = new Product(id, name, type, price, artist, size, image, review);
+                Product product = new Product(id, name, type, price, artist, size, image, description);
                 list.Add(product);
             }
         }
@@ -429,9 +429,10 @@ public static class ConnectionClass
         {
             conn.Open();
             int amountOfUsers = (int)command.ExecuteScalar();
-
+            Debug.WriteLine("Count?????????????" + amountOfUsers);
             if (amountOfUsers < 1)
             {
+                Debug.WriteLine("Un singur user cu emailul "+user.Email);
                 //User does not exist, create a new user
                 query = string.Format("INSERT INTO users VALUES ('{0}', '{1}', '{2}', '{3}')", user.Name, user.Password,
                                       user.Email, user.Type);
