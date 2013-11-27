@@ -56,9 +56,10 @@
                                 
                                 <asp:UpdatePanel runat="server">
                                      
-                                    <ContentTemplate>
-                                 <asp:Button ID="btnAddToWishlist" runat="server" CommandName="ID" Text="Add to Wishlist" />
-                                     </ContentTemplate>
+                                        <ContentTemplate>
+                                 <asp:Button ID="btnAddToWishlist" runat="server" CommandName="ID" Text="Add to Wishlist" /><br />
+                                 <asp:Label ID="lblWishList" runat="server" Text="<html>This item has been<br/> added to your wishlist!<html>"  Visible="false"></asp:Label>
+                                         </ContentTemplate>
                                     
                                     </asp:UpdatePanel>   
                                    </div>                             

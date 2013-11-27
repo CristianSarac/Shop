@@ -303,6 +303,30 @@ public static class ConnectionClass
         }
     }
 
+    public static bool isInWishList(int productId,int userId)
+    {
+        try
+        {
+            command.CommandText = "Select COUNT (*) From ProductDB.dbo.wishlist where productID=@p AND userID=@user_id";
+            conn.Open();
+            command.Parameters.Clear();
+            command.Parameters.Add("@p", productId);
+            command.Parameters.Add("@user_id", userId);
+            int amount =(int) command.ExecuteScalar();
+            if (amount > 0)
+            {
+                return true;
+            }
+
+        }
+        finally
+        {
+            conn.Close();
+        }
+         
+        return false;
+    }
+
     #endregion
 
     #region Users

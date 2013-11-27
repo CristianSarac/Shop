@@ -13,9 +13,15 @@ namespace Pages
     public partial class Pages_Shop : System.Web.UI.Page
     {
         List<Product> listOfProducts = new List<Product>();
+        int user_id = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user_id"] != null)
+            {
+                 user_id = (int)Session["user_id"];
+            }
+            
 
             if (!IsPostBack)
             {
@@ -41,6 +47,23 @@ namespace Pages
                 Typeddl.DataBind();
                 Sizeddl.DataSource = ConnectionClass.GetProductSizes();
                 Sizeddl.DataBind();
+            }
+
+            foreach (RepeaterItem item in repeater.Items)
+            {
+                if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                {
+                    Label labelId = (Label)item.FindControl("lblId");
+                    Label lbllWishListAdd = (Label)item.FindControl("lblWishList");
+                    Debug.WriteLine(labelId.Text);
+                    if (ConnectionClass.isInWishList(Int32.Parse(labelId.Text), user_id))
+                    {
+                        lbllWishListAdd.Visible = true;
+                    }
+                    
+                    
+                    
+                }
             }
 
         }
@@ -90,7 +113,8 @@ namespace Pages
 	{
         Authenticate();
 	    Label id = (Label)e.Item.FindControl("lblId");
-        int user_id=(int)Session["user_id"];
+        Label idWish = (Label)e.Item.FindControl("lblWishList");
+       // user_id=(int)Session["user_id"];
         Product toBeAdded=null;
 	    foreach(Product p in listOfProducts){
             if (p.Id == int.Parse(id.Text))
@@ -98,8 +122,11 @@ namespace Pages
                 toBeAdded = p;
             }
         }
+        
+        idWish.Visible = true;
+        
              ConnectionClass.AddToWishlist(toBeAdded,user_id);
-          
+               
              
             
 	}
