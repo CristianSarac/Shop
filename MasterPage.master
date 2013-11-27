@@ -32,12 +32,21 @@
     </script>
 
     <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-                </asp:ContentPlaceHolder>
+    </asp:ContentPlaceHolder>
 
     <link rel="stylesheet" type="text/css" href="Css/StyleSheet.css" />
 </head>
 
 <body>
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
     <form id="form1" runat="server">
         <script type="text/javascript"
             src="../JavaScript/paypal-button-minicart.min.js">
@@ -67,16 +76,16 @@
                         </ul>
                     </li>
 
+
+                    <li id="Login">
+                        <asp:Label ID="lblLogin" runat="server" Text=""></asp:Label>
+                        <ul>
+                            <li><a id="A8" href="~/Pages/Wishlist.aspx" runat="server">Wishlist</a></li>
+                            <li>
+                                <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">LinkButton</asp:LinkButton>
+                            </li>
+                        </ul>
                     </li>
-                        <li id="Login">
-                            <asp:Label ID="lblLogin" runat="server" Text=""></asp:Label>
-                            <ul>
-                                <li><a id="A8" href="~/Pages/Wishlist.aspx" runat="server">Wishlist</a></li>
-                                <li>
-                                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">LinkButton</asp:LinkButton>
-                                </li>
-                            </ul>
-                        </li>
                     <li id="searchbox">
                         <asp:TextBox ID="tbxSearch" runat="server"></asp:TextBox>
                         <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
@@ -86,11 +95,11 @@
             </div>
             <ul class="bxslider">
                 <li>
-                    <img src="/Shop/Images/banner.jpg" /></li>
+                    <img src="/Shop/Images/background.jpg" /></li>
                 <li>
-                    <img src="/Shop/Images/banner.jpg" /></li>
+                    <img src="/Shop/Images/background2.png" /></li>
                 <li>
-                    <img src="/Shop/Images/banner.jpg" /></li>
+                    <img src="/Shop/Images/background3.png" /></li>
             </ul>
 
             <div id="content_area">
@@ -98,8 +107,13 @@
                 </asp:ContentPlaceHolder>
             </div>
 
-            <div id="sidebar">
+
+            <div class="fb-like-box"
+                data-href="http://www.facebook.com/MikeLeaArt"
+                data-width="300"
+                data-height="500">
             </div>
+
 
             <div id="footer">
                 <!-- PayPal Logo -->
