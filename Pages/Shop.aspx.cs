@@ -122,10 +122,20 @@ namespace Pages
         Label idWish = (Label)e.Item.FindControl("lblWishList");
        // user_id=(int)Session["user_id"];
         Product toBeAdded=null;
-	    foreach(Product p in listOfProducts){
-            if (p.Id == int.Parse(id.Text))
+        if (ConnectionClass.CheckWishList(int.Parse(id.Text), user_id))
+        {
+            return;
+        }
+        else
+        {
+            foreach (Product p in listOfProducts)
             {
-                toBeAdded = p;
+
+                if (p.Id == int.Parse(id.Text))
+                {
+                    toBeAdded = p;
+                }
+
             }
         }
         

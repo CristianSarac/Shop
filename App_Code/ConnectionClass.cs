@@ -319,6 +319,31 @@ public static class ConnectionClass
         return false;
     }
 
+    public static bool CheckWishList(int productId, int userId)
+    {
+        try
+        {
+            command.CommandText = "Select COUNT (*) FROM wishlist WHERE userID= @user_id AND productID=@product_id";
+            conn.Open();
+            command.Parameters.Clear();
+            command.Parameters.Add(new SqlParameter("@product_id", productId));
+            command.Parameters.Add(new SqlParameter("@user_id", userId));
+            int amount = (int)command.ExecuteScalar();
+            if (amount > 0)
+            {
+                return true;
+            }
+
+        }
+        finally
+        {
+            command.Parameters.Clear();
+            conn.Close();
+        }
+
+        return false;
+    }
+
     #endregion
 
     #region Users
