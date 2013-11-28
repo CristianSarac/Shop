@@ -4,17 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    <div id="fb-root"></div>
-    <script>(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-    <script type="text/javascript" src="../JavaScript/minicart.min.js"></script>
-    <script type="text/javascript"
-        src="../JavaScript/paypal-button-minicart.min.js"></script>
+    
    
 
     <asp:Panel ID="pnlProducts" runat="server">
@@ -77,15 +67,6 @@
 
                         </div>
 
-                        <!--facebook share 
-                        <div class="fb-share-button" data-href="http://www.google.com" data-type="icon_link"></div>
-                        <!-- END OF facebook share -->
-
-
-
-                        <!-- Place this tag where you want the share button to render. 
-                        <div class="g-plus" data-action="share" data-annotation="none"></div>
-                        <div class="clearfix"></div>-->
                     </td>
                 </tr>
             </ItemTemplate>
@@ -98,15 +79,5 @@
 
         </script>
     </asp:Panel>
-
-    <!-- Place this tag after the last share tag. -->
-    <script type="text/javascript">
-        (function () {
-            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-            po.src = 'https://apis.google.com/js/platform.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-        })();
-    </script>
-    <br />
 </asp:Content>
 

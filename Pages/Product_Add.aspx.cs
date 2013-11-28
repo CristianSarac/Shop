@@ -42,8 +42,9 @@ public partial class Pages_Product_Add : System.Web.UI.Page
             string review = txtReview.Text;
 
             Product product = new Product(name, type, price, artist, size, image, review);
-            ConnectionClass.AddProduct(product);
-            lblResult.Text = "Upload successful!";
+            
+            //ConnectionClass.AddProduct(product);
+            lblResult.Text = "Upload successful!NOT... check here!!!!";
             ClearTextFields();
         }
         catch (Exception)

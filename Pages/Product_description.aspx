@@ -46,9 +46,36 @@
                     <asp:Label ID="lblDescription" runat="server" Text="Label"></asp:Label></td>
             </tr>
         </table>
+        <div style="float: left; margin-left: 18px;">
+            <h4>Do you like our product? Share it on Facebook and Google+ </h4>
+
+            <!--facebook share -->
+            <div class="fb-share-button"
+                data-href=<%= url %> 
+                data-type="button">
+            </div>
+            <!-- END OF facebook share -->
+           
+            
+
+            <!-- Place this tag where you want the share button to render. -->
+            <div class="g-plus" 
+                data-action="share" 
+                data-annotation="none"
+                data-href=<%= url %> >
+
+            </div>
+            <!-- Place this tag after the last share tag. -->
+            <script type="text/javascript">
+                (function () {
+                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                    po.src = 'https://apis.google.com/js/platform.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                })();
+            </script>
+        </div>
         <div class="clearfix"></div>
     </div>
-
 
 
     <h3 class="alignLeft">Here are reviews made by our users</h3>
@@ -79,6 +106,8 @@
         <asp:Button ID="btnOk" runat="server" Text="OK" OnClick="btnOk_Click" />
     </asp:Panel>
 
+
+
     <div class="clearfix"></div>
 
     <asp:Repeater ID="repeater" runat="server">
@@ -102,7 +131,7 @@
                         FilledStarCssClass="filledRatingStar"
                         EmptyStarCssClass="emptyRatingStar"
                         OnChanged="Rating_Changed1" />
-                    <div style="clear:both;float:none;"></div>
+                    <div style="clear: both; float: none;"></div>
                 </div>
                 <asp:Label ID="lblReview" CssClass="review" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "reviewtext") %>'></asp:Label>
 

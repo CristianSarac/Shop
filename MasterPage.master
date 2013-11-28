@@ -69,15 +69,6 @@
                     </li>
                     <li><a id="A3" href="~/Pages/Shop.aspx" runat="server">Shop</a></li>
                     <li><a id="A4" href="~/Pages/Contact.aspx" runat="server">Contact</a></li>
-                    <li><a href="#">Management</a>
-                        <ul>
-                            <li><a id="A5" href="~/Pages/Product_Overview.aspx" runat="server">Products</a></li>
-                            <li><a id="A6" href="~/Pages/Account/Admin.aspx" runat="server">Users</a></li>
-                            <li><a id="A7" href="~/Pages/Orders.aspx" runat="server">Orders</a></li>
-                        </ul>
-                    </li>
-
-
                     <li id="Login">
                         <asp:Label ID="lblLogin" runat="server" Text=""></asp:Label>
                         <ul>
