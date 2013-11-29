@@ -21,8 +21,13 @@
    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
   
     
-     <div class="fb-share-button" data-href="http://oakleaproductions.somee.com/Pages/Wishlist.aspx" data-type="icon_link"></div>
-    <div class="g-plus" data-action="share" data-annotation="none" data-href="http://oakleaproductions.somee.com/Pages/Wishlist.aspx"></div>
+     <div class="fb-share-button" 
+         data-href=<%= url %> 
+         data-type="icon_link"></div>
+    <div class="g-plus" 
+        data-action="share" 
+        data-annotation="none" 
+        data-href=<%= url %> ></div>
     <asp:Panel ID="pnlProducts" runat="server"> 
         <asp:Repeater ID="repeater" runat="server" OnItemCommand="Button_ItemCommand">
 
@@ -39,7 +44,7 @@
                                 <asp:Label ID="lblId" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "id") %>' Visible="false"></asp:Label>
                                 <asp:Label ID="lblName" CssClass="ProductsName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "name") %>'></asp:Label>
                                 <br />
-                                <asp:Label ID="lblDescription" CssClass="ProductsReview" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "description") %>'></asp:Label><br />
+                                <asp:Label ID="lblDescription" CssClass="ProductsDescription" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "description") %>'></asp:Label><br />
                                 <asp:Label ID="lblPrice" runat="server" CssClass="ProductsPrice" Text='<%# String.Format("{0:c}", DataBinder.Eval(Container.DataItem, "price")) %>' Font-Bold="true"></asp:Label>
                                 <br />
                                

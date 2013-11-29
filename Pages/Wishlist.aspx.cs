@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class Pages_Wishlist : System.Web.UI.Page
 {
+    public string url;
     List<Product> listOfProducts = new List<Product>();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -15,7 +16,7 @@ public partial class Pages_Wishlist : System.Web.UI.Page
         listOfProducts = ConnectionClass.GetWishlist(user_id);
         repeater.DataSource = listOfProducts;
         repeater.DataBind();
-
+        url = "http://oakleaproductions.somee.com/Pages/Shared_wishlist.aspx?id=" + user_id;
     }
 
 
@@ -35,7 +36,6 @@ public partial class Pages_Wishlist : System.Web.UI.Page
         ConnectionClass.RemoveFromWishlist(toBeRemoved, user_id);
         repeater.DataSource = listOfProducts;
         repeater.DataBind();
-        //ClientScript.RegisterStartupScript(this.GetType(), "Alert", "alert('Add button clicked');", true);
     }
 
     //Check if user is logged in
@@ -44,7 +44,7 @@ public partial class Pages_Wishlist : System.Web.UI.Page
 
         if (Session["login"] == null)
         {
-            Response.Redirect("~/pages/account/login.aspx");
+            Response.Redirect("~/Pages/Account/Login.aspx");
         }
     }
-};
+}

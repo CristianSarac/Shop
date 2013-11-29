@@ -69,10 +69,10 @@
                     </li>
                     <li><a id="A3" href="~/Pages/Shop.aspx" runat="server">Shop</a></li>
                     <li><a id="A4" href="~/Pages/Contact.aspx" runat="server">Contact</a></li>
-                    <li id="Login">
+                    <li id="Login" runat="server">
                         <asp:Label ID="lblLogin" runat="server" Text=""></asp:Label>
                         <ul>
-                            <li><a id="A8" href="~/Pages/Wishlist.aspx" runat="server">Wishlist</a></li>
+                            <li><asp:LinkButton id="btnWishlist" runat="server" OnClick="btnWishlist_Click" Text="Wishlist"></asp:LinkButton></li>
                             <li>
                                 <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">LinkButton</asp:LinkButton>
                             </li>

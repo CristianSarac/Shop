@@ -18,7 +18,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             
             lblLogin.Text = "Welcome " + Session["login"];
             lblLogin.Visible = true;
-            LinkButton1.Text = "Logout";
+            LinkButton1.Text = "Logout";  
+           
         }
        
         else
@@ -26,6 +27,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lblLogin.Visible = true;
             lblLogin.Text = "Your Account";
             LinkButton1.Text = "Login";
+          
             
             
         }
@@ -56,7 +58,18 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     }
 
-   
 
+
+    protected void btnWishlist_Click(object sender, EventArgs e)
+    {
+        if (Session["login"] != null)
+        {
+            Response.Redirect("~/Pages/Wishlist.aspx?id=" + (int)Session["user_id"]);
+        }
+        else
+        {
+            Response.Redirect("~/Pages/Wishlist.aspx");
+        }
+    }
 }
 
