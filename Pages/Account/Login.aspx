@@ -6,7 +6,7 @@
         function onSignInCallback(authResult) {
             if (authResult['access_token']) {
                 // The user is signed in
-                var loc = '/Shop/Pages/Home.aspx?accessToken=' + authResult['access_token'];
+                var loc = '/Pages/Home.aspx?accessToken=' + authResult['access_token'];
                 window.location.href = loc;
             } else if (authResult['error']) {
                 // There was an error, which means the user is not signed in.
