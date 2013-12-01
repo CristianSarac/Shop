@@ -1,5 +1,5 @@
 ﻿using System;
-using Facebook;
+
 using System.Diagnostics;
 
 
@@ -39,5 +39,9 @@ public partial class Pages_Account_Login : System.Web.UI.Page
 
 
 
+    protected void btnPass_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Pages/Account/PassRetrieval.aspx");
+    }
 }
 

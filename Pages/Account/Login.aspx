@@ -189,5 +189,7 @@
 
     </div>
 
+    <asp:LinkButton runat="server" ID="btnPass" Text="Retriev Password" OnClick="btnPass_Click"></asp:LinkButton>
+
 </asp:Content>
 
