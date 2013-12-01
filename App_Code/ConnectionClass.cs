@@ -27,7 +27,7 @@ public static class ConnectionClass
     {
         ArrayList list = new ArrayList();
 
-        string query = string.Format("SELECT DISTINCT type FROM products ");
+        string query = "SELECT DISTINCT type FROM products ";
 
 
         try
@@ -54,7 +54,7 @@ public static class ConnectionClass
     {
         ArrayList list = new ArrayList();
 
-        string query = string.Format("SELECT DISTINCT size FROM products ");
+        string query = "SELECT DISTINCT size FROM products ";
 
         try
         {
@@ -79,14 +79,15 @@ public static class ConnectionClass
     public static List<Product> GetProductsByKeyword(string keyword)
     {
         List<Product> list = new List<Product>();
-        Debug.WriteLine(keyword);
-        string query = string.Format("SELECT * FROM products WHERE name LIKE '%{0}%' OR artist LIKE '%{0}%' OR type LIKE '%{0}%' OR description LIKE '%{0}%' ", keyword);
+
+        string query = "SELECT * FROM products WHERE name LIKE '%@keyword%' OR artist LIKE '%@keyword%' OR type LIKE '%@keyword%' OR description LIKE '%@keyword%' ";
 
         try
         {
             conn.Open();
 
             command.CommandText = query;
+            command.Parameters.Add(new SqlParameter("@keyword",keyword));
             SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -107,6 +108,7 @@ public static class ConnectionClass
         }
         finally
         {
+            command.Parameters.Clear();
             conn.Close();
         }
 
@@ -151,12 +153,13 @@ public static class ConnectionClass
     public static ArrayList GetProductByType(string productType)
     {
         ArrayList list = new ArrayList();
-        string query = string.Format("SELECT * FROM products WHERE type LIKE '{0}'", productType);
+        string query = "SELECT * FROM products WHERE type LIKE @product_type";
 
         try
         {
             conn.Open();
             command.CommandText = query;
+            command.Parameters.Add(new SqlParameter("@product_type",productType));
             SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -176,6 +179,7 @@ public static class ConnectionClass
         }
         finally
         {
+            command.Parameters.Clear();
             conn.Close();
         }
 
@@ -184,13 +188,14 @@ public static class ConnectionClass
 
     public static Product GetProductById(int id)
     {
-        string query = String.Format("SELECT * FROM products WHERE id =  '{0}'", id);
+        string query = "SELECT * FROM products WHERE id =  @id";
         Product product = null;
 
         try
         {
             conn.Open();
             command.CommandText = query;
+            command.Parameters.Add(new SqlParameter("@id", id));
             SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -208,30 +213,14 @@ public static class ConnectionClass
         }
         finally
         {
+            command.Parameters.Clear();
             conn.Close();
         }
 
         return product;
     }
 
-    public static void AddProduct(Product product)
-    {
-        string query = string.Format(
-            @"INSERT INTO products VALUES ('{0}', '{1}', @prices, '{2}', '{3}','{4}', '{5}')",
-            product.Name, product.Type, product.Artist, product.Size, product.Image, product.Description);
-        command.CommandText = query;
-        command.Parameters.Add(new SqlParameter("@prices", product.Price));
-        try
-        {
-            conn.Open();
-            command.ExecuteNonQuery();
-        }
-        finally
-        {
-            conn.Close();
-            command.Parameters.Clear();
-        }
-    }
+    
 
     public static void AddToWishlist(Product product, int user_id)
     {
@@ -254,12 +243,13 @@ public static class ConnectionClass
     {
         List<Product> list = new List<Product>();
 
-        string query = string.Format("SELECT * FROM products,wishlist WHERE wishlist.userID='{0}' AND products.id=wishlist.productID", user_id);
+        string query = "SELECT * FROM products,wishlist WHERE wishlist.userID= @user_id AND products.id=wishlist.productID";
 
         try
         {
             conn.Open();
             command.CommandText = query;
+            command.Parameters.Add(new SqlParameter("@user_id",user_id));
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -279,6 +269,7 @@ public static class ConnectionClass
         }
         finally
         {
+            command.Parameters.Clear();
             conn.Close();
         }
 
@@ -287,7 +278,7 @@ public static class ConnectionClass
 
     public static void RemoveFromWishlist(Product product, int user_id)
     {
-        string query = @"DELETE FROM wishlist WHERE userID=@userID AND productID=@productID";
+        string query = "DELETE FROM wishlist WHERE userID=@userID AND productID=@productID";
         command.CommandText = query;
         command.Parameters.Add(new SqlParameter("@userID", user_id));
         command.Parameters.Add(new SqlParameter("@productID", product.Id));
@@ -303,16 +294,16 @@ public static class ConnectionClass
         }
     }
 
-    public static bool isInWishList(int productId,int userId)
+    public static bool isInWishList(int productId, int userId)
     {
         try
         {
-            command.CommandText = "Select COUNT (*) From ProductDB.dbo.wishlist where productID=@p AND userID=@user_id";
+            command.CommandText = "Select COUNT (*) From ProductDB.dbo.wishlist where productID=@product_id AND userID=@user_id";
             conn.Open();
             command.Parameters.Clear();
-            command.Parameters.Add("@p", productId);
-            command.Parameters.Add("@user_id", userId);
-            int amount =(int) command.ExecuteScalar();
+            command.Parameters.Add(new SqlParameter("@product_id", productId));
+            command.Parameters.Add(new SqlParameter("@user_id", userId));
+            int amount = (int)command.ExecuteScalar();
             if (amount > 0)
             {
                 return true;
@@ -321,9 +312,35 @@ public static class ConnectionClass
         }
         finally
         {
+            command.Parameters.Clear();
             conn.Close();
         }
-         
+
+        return false;
+    }
+
+    public static bool CheckWishList(int productId, int userId)
+    {
+        try
+        {
+            command.CommandText = "Select COUNT (*) FROM wishlist WHERE userID= @user_id AND productID=@product_id";
+            conn.Open();
+            command.Parameters.Clear();
+            command.Parameters.Add(new SqlParameter("@product_id", productId));
+            command.Parameters.Add(new SqlParameter("@user_id", userId));
+            int amount = (int)command.ExecuteScalar();
+            if (amount > 0)
+            {
+                return true;
+            }
+
+        }
+        finally
+        {
+            command.Parameters.Clear();
+            conn.Close();
+        }
+
         return false;
     }
 
@@ -366,26 +383,28 @@ public static class ConnectionClass
     public static User LoginUser(string email, string password)
     {
         //Check if user exists
-        string query = string.Format("SELECT COUNT(*) FROM ProductDB.dbo.users WHERE email = '{0}'", email);
+        string query = "SELECT COUNT(*) FROM ProductDB.dbo.users WHERE email = @email";
         command.CommandText = query;
 
         try
         {
             conn.Open();
+            command.Parameters.Add(new SqlParameter("@email", email));
             int amountOfUsers = (int)command.ExecuteScalar();
 
             if (amountOfUsers == 1)
             {
                 //User exists, check if the passwords match
-                query = string.Format("SELECT password FROM users WHERE email = '{0}'", email);
+                query = "SELECT password FROM users WHERE email = @email";
                 command.CommandText = query;
+
                 string dbPassword = command.ExecuteScalar().ToString();
 
                 if (dbPassword == password)
                 {
                     //Passwords match. Login and password data are known to us.
                     //Retrieve further user data from the database
-                    query = string.Format("SELECT name, user_type,id FROM users WHERE email = '{0}'", email);
+                    query = "SELECT name, user_type,id FROM users WHERE email = @email";
                     command.CommandText = query;
 
                     SqlDataReader reader = command.ExecuteReader();
@@ -415,14 +434,16 @@ public static class ConnectionClass
         }
         finally
         {
+            command.Parameters.Clear();
             conn.Close();
         }
     }
 
     public static User GetUserDetails(string userName)
     {
-        string query = string.Format("SELECT * FROM users WHERE name = '{0}'", userName);
+        string query = string.Format("SELECT * FROM users WHERE name = @user_name", userName);
         command.CommandText = query;
+        command.Parameters.Add(new SqlParameter("@user_name", userName));
         User user = null;
 
         try
@@ -447,6 +468,7 @@ public static class ConnectionClass
         }
         finally
         {
+            command.Parameters.Clear();
             conn.Close();
         }
         return user;
@@ -455,21 +477,26 @@ public static class ConnectionClass
     public static string RegisterUser(User user)
     {
         //Check if user exists
-        string query = string.Format("SELECT COUNT(*) FROM users WHERE email = '{0}'", user.Email);
+        string query = "SELECT COUNT(*) FROM users WHERE email = @email";
         command.CommandText = query;
+        command.Parameters.Add(new SqlParameter("@email", user.Email));
 
         try
         {
             conn.Open();
             int amountOfUsers = (int)command.ExecuteScalar();
-            Debug.WriteLine("Count?????????????" + amountOfUsers);
             if (amountOfUsers < 1)
             {
-                Debug.WriteLine("Un singur user cu emailul "+user.Email);
+                Debug.WriteLine("Un singur user cu emailul " + user.Email);
                 //User does not exist, create a new user
-                query = string.Format("INSERT INTO users VALUES ('{0}', '{1}', '{2}', '{3}')", user.Name, user.Password,
-                                      user.Email, user.Type);
+                query = "INSERT INTO users VALUES (@name, @password, @email, @type)";
+
                 command.CommandText = query;
+                command.Parameters.Clear();
+                command.Parameters.Add(new SqlParameter("@name", user.Name));
+                command.Parameters.Add(new SqlParameter("@password", user.Password));
+                command.Parameters.Add(new SqlParameter("@email", user.Email));
+                command.Parameters.Add(new SqlParameter("@type", user.Type));
                 command.ExecuteNonQuery();
                 return "User registered!";
             }
@@ -481,14 +508,16 @@ public static class ConnectionClass
         }
         finally
         {
+            command.Parameters.Clear();
             conn.Close();
         }
     }
 
     public static bool searchUser(String email)
     {
-        string query = string.Format("SELECT COUNT(*) FROM users WHERE email = '{0}'", email);
+        string query = "SELECT COUNT(*) FROM users WHERE email = @email";
         command.CommandText = query;
+        command.Parameters.Add(new SqlParameter("@email", email));
 
         try
         {
@@ -497,26 +526,28 @@ public static class ConnectionClass
 
             if (amountOfUsers < 1)
             {
-                Debug.WriteLine(" nui Gasit");
+
                 return false;
             }
             else
             {
-                Debug.WriteLine("Exista");
+
                 return true;
             }
 
         }
         finally
         {
+            command.Parameters.Clear();
             conn.Close();
         }
     }
 
     public static User GetUserByEmail(string email)
     {
-        string query = string.Format("SELECT * FROM users WHERE email = '{0}'", email);
+        string query = string.Format("SELECT * FROM users WHERE email = @email");
         command.CommandText = query;
+        command.Parameters.Add(new SqlParameter("@email", email));
         User user = null;
 
         try
@@ -541,14 +572,16 @@ public static class ConnectionClass
         }
         finally
         {
+            command.Parameters.Clear();
             conn.Close();
         }
         return user;
     }
     public static User GetUserById(int id)
     {
-        string query = string.Format("SELECT * FROM users WHERE id = '{0}'", id);
+        string query = "SELECT * FROM users WHERE id = @id";
         command.CommandText = query;
+         command.Parameters.Add(new SqlParameter("@id", id));
         User user = null;
 
         try
@@ -573,6 +606,7 @@ public static class ConnectionClass
         }
         finally
         {
+            command.Parameters.Clear();
             conn.Close();
         }
         return user;
@@ -580,7 +614,7 @@ public static class ConnectionClass
 
     #endregion
 
-   
+
 
     #region Review
 
@@ -589,12 +623,13 @@ public static class ConnectionClass
     {
         List<Review> list = new List<Review>();
 
-        string query = string.Format("SELECT *  FROM review WHERE product_id= '{0}'", product.Id);
+        string query = "SELECT *  FROM review WHERE product_id= @product_id";
 
         try
         {
             conn.Open();
             command.CommandText = query;
+            command.Parameters.Add(new SqlParameter("@product_id", product.Id));
 
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -607,9 +642,11 @@ public static class ConnectionClass
                 User user = null;
 
                 //------ get user by id--------
-                string query2 = string.Format("SELECT * FROM users WHERE id = '{0}'", user_id);
+                string query2 = "SELECT * FROM users WHERE id = @user_id";
                 SqlCommand cmd2 = new SqlCommand("", conn);
                 cmd2.CommandText = query2;
+                cmd2.Parameters.Add(new SqlParameter("@user_id", user_id));
+
 
 
                 try
@@ -630,6 +667,7 @@ public static class ConnectionClass
                 {
                     MessageBox.Show(ex.ToString());
                 }
+                cmd2.Parameters.Clear();
                 // --- user retrived
 
 
@@ -641,7 +679,7 @@ public static class ConnectionClass
         {
             conn.Close();
         }
-
+        command.Parameters.Clear();
         return list;
     }
 
@@ -678,5 +716,5 @@ public static class ConnectionClass
 
 
 
-   
+
 }

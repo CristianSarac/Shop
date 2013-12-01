@@ -13,7 +13,8 @@ using AjaxControlToolkit;
 public partial class Pages_Product_description : System.Web.UI.Page
 {
     Product product = null;
-    
+    public string url;
+    public int id = -1;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (string.IsNullOrEmpty(Request.QueryString["id"]))
@@ -23,7 +24,8 @@ public partial class Pages_Product_description : System.Web.UI.Page
 
             product = ConnectionClass.GetProductById(Int32.Parse(Request.QueryString["id"]));
             product.Id = Int32.Parse(Request.QueryString["id"]);
-
+            id = product.Id;
+            url="http://oakleaproductions.somee.com/Pages/Product_description.aspx?id="+id;
             Image_description.ImageUrl = product.Image;
             lblName.Text = product.Name;
             lblPrice.Text = product.Price + "";
