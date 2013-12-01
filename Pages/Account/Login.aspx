@@ -188,8 +188,8 @@
         </div>
 
     </div>
-
-    <asp:LinkButton runat="server" ID="btnPass" Text="Retriev Password" OnClick="btnPass_Click"></asp:LinkButton>
-
+    <div>   
+        <a id="pass" href="~/Pages/Account/PassRetrieval.aspx" runat="server">Pass retrieval</a>
+    </div>
 </asp:Content>
 
