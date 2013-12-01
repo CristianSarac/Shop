@@ -189,7 +189,7 @@
 
     </div>
     <div>   
-        <a id="pass" href="~/Pages/Account/PassRetrieval.aspx" runat="server">Pass retrieval</a>
+        <a id="pass" href="~/Pages/Account/PassRetrieval.aspx" runat="server">Password retrieval</a>
     </div>
 </asp:Content>
 
