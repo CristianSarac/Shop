@@ -79,15 +79,13 @@ public static class ConnectionClass
     public static List<Product> GetProductsByKeyword(string keyword)
     {
         List<Product> list = new List<Product>();
-
-        string query = "SELECT * FROM products WHERE name LIKE '%@keyword%' OR artist LIKE '%@keyword%' OR type LIKE '%@keyword%' OR description LIKE '%@keyword%' ";
+        string query = "SELECT * FROM products WHERE (name LIKE '%'+ @keyword +'%') OR (artist LIKE '%' + @keyword + '%') OR (type LIKE '%' + @keyword + '%') OR (description LIKE '%' + @keyword + '%')";
 
         try
         {
             conn.Open();
-
             command.CommandText = query;
-            command.Parameters.Add(new SqlParameter("@keyword",keyword));
+            command.Parameters.Add(new SqlParameter("@keyword",  keyword));
             SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())

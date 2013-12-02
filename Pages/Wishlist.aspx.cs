@@ -17,6 +17,12 @@ public partial class Pages_Wishlist : System.Web.UI.Page
         repeater.DataSource = listOfProducts;
         repeater.DataBind();
         url = "http://oakleaproductions.somee.com/Pages/Shared_wishlist.aspx?id=" + user_id;
+
+        if (listOfProducts.Count < 1)
+        {
+            lblEmpty.Visible = true;
+            pnlShare.Visible = false;
+        }
     }
 
 
@@ -36,6 +42,7 @@ public partial class Pages_Wishlist : System.Web.UI.Page
         ConnectionClass.RemoveFromWishlist(toBeRemoved, user_id);
         repeater.DataSource = listOfProducts;
         repeater.DataBind();
+        Response.Redirect(Request.RawUrl);
     }
 
     //Check if user is logged in

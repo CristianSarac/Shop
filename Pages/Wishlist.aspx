@@ -20,7 +20,7 @@
      
    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
   
-    
+    <asp:Panel ID="pnlShare" runat="server">
      <div class="fb-share-button" 
          data-href=<%= url %> 
          data-type="icon_link"></div>
@@ -28,7 +28,9 @@
         data-action="share" 
         data-annotation="none" 
         data-href=<%= url %> ></div>
+        </asp:Panel>
     <asp:Panel ID="pnlProducts" runat="server"> 
+        <asp:Label ID="lblEmpty" runat="server" Text="Your wishlist is empty! " ForeColor="Red" Visible="false" />
         <asp:Repeater ID="repeater" runat="server" OnItemCommand="Button_ItemCommand">
 
             <HeaderTemplate>
@@ -47,10 +49,8 @@
                                 <asp:Label ID="lblDescription" CssClass="ProductsDescription" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "description") %>'></asp:Label><br />
                                 <asp:Label ID="lblPrice" runat="server" CssClass="ProductsPrice" Text='<%# String.Format("{0:c}", DataBinder.Eval(Container.DataItem, "price")) %>' Font-Bold="true"></asp:Label>
                                 <br />
-                               
                                     <asp:Button ID="btnRemoveFromWishlist" runat="server" CommandName="ID" Text="Remove from Wishlist" />
-                                       
-                                    </div>
+                         </div>
 
                             
                             <div id="Div1" class="paypal" runat="server">
