@@ -81,7 +81,7 @@
     <h3 class="alignLeft">Here are reviews made by our users</h3>
 
 
-    <asp:Button ID="btnComment" CssClass="btn_review" runat="server" Text="Add review" />
+    <asp:Button ID="btnComment" CssClass="btn_review" runat="server" Text="Add review" OnClick="btnComment_Click" />
     <ajaxToolkit:ModalPopupExtender ID="MP1" runat="server"
         PopupControlID="Panel1"
         BackgroundCssClass="modalBackground"

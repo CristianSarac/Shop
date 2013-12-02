@@ -41,6 +41,19 @@ public partial class Pages_Product_description : System.Web.UI.Page
 
             repeater.DataSource = reviewList;
             repeater.DataBind();
+            // Default rating for an item 
+            Session["review_rating"] = 2;
+            if (Session["user_id"] == null)
+            {
+                //Response.Redirect("~/Pages/Account/Login.aspx");
+                btnComment.Visible = false;
+
+            }
+            else {
+                btnComment.Visible = true;
+            }
+
+
         }
     }
 
@@ -58,14 +71,7 @@ public partial class Pages_Product_description : System.Web.UI.Page
         MP1.Hide();
         String reviewText = tbxReview.Text;
         tbxReview.Text = "";
-        if (Session["user_id"] == null)
-        {
-            Response.Redirect("~/Pages/Account/Login.aspx");
 
-        }
-        else { 
-        
-        
         User u = ConnectionClass.GetUserById((int)Session["user_id"]);
         
             int rating = (int)Session["review_rating"];
@@ -74,10 +80,14 @@ public partial class Pages_Product_description : System.Web.UI.Page
 
             ConnectionClass.AddReview(review);
             Response.Redirect(Request.RawUrl);
-        }
+        
     }
     protected void Rating_Changed1(object sender, RatingEventArgs e)
     {
 
+    }
+    protected void btnComment_Click(object sender, EventArgs e)
+    {
+        
     }
 }
