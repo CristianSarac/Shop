@@ -20,6 +20,10 @@ public partial class Pages_Wishlist : System.Web.UI.Page
 
         if (listOfProducts.Count < 1)
         {
+            lblEmpty.Text = "We are sorry, but it seems that your wishlist is empty :(";
+            lblInfo.Text = "You can add items to your list from our ";
+            lblInfo.Visible = true;
+            btnRedirect.Visible = true;
             lblEmpty.Visible = true;
             pnlShare.Visible = false;
         }
@@ -43,6 +47,11 @@ public partial class Pages_Wishlist : System.Web.UI.Page
         repeater.DataSource = listOfProducts;
         repeater.DataBind();
         Response.Redirect(Request.RawUrl);
+    }
+
+    protected void btnRedirect_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Pages/Shop.aspx");
     }
 
     //Check if user is logged in
