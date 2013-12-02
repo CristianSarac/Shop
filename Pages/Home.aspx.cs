@@ -46,6 +46,7 @@ namespace Pages
                 ConnectionClass.LoginUser(user.Name, user.Password);
                 Session["login"] = user.Name;
                 Session["type"] = user.Type;
+                Session["user_id"] = user.Id;
 
             }
 

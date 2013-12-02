@@ -58,13 +58,23 @@ public partial class Pages_Product_description : System.Web.UI.Page
         MP1.Hide();
         String reviewText = tbxReview.Text;
         tbxReview.Text = "";
-        User u = ConnectionClass.GetUserById((int)Session["user_id"]);
-        int rating = (int)Session["review_rating"];
-        Session["review_rating"] = 0;
-        Review review = new Review(u, product, reviewText, rating);
+        if (Session["user_id"] == null)
+        {
+            Response.Redirect("~/Pages/Account/Login.aspx");
 
-        ConnectionClass.AddReview(review);
-        Response.Redirect(Request.RawUrl);
+        }
+        else { 
+        
+        
+        User u = ConnectionClass.GetUserById((int)Session["user_id"]);
+        
+            int rating = (int)Session["review_rating"];
+            Session["review_rating"] = 0;
+            Review review = new Review(u, product, reviewText, rating);
+
+            ConnectionClass.AddReview(review);
+            Response.Redirect(Request.RawUrl);
+        }
     }
     protected void Rating_Changed1(object sender, RatingEventArgs e)
     {

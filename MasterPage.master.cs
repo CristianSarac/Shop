@@ -42,8 +42,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
         else
         {
             //User logs out
+            Session.Clear();
             Session.Abandon();
-            Response.Redirect("~/Pages/Home.aspx");
+            Session.RemoveAll();
+           // Response.Redirect("~/Pages/Home.aspx");
         }
 
     }   

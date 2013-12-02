@@ -80,8 +80,7 @@ public static class ConnectionClass
     {
         List<Product> list = new List<Product>();
 
-        string query = "SELECT * FROM products WHERE name LIKE '%@keyword%' OR artist LIKE '%@keyword%' OR type LIKE '%@keyword%' OR description LIKE '%@keyword%' ";
-
+        string query = "SELECT * FROM products WHERE (name LIKE '%'+ @keyword +'%') OR (artist LIKE '%' + @keyword + '%') OR (type LIKE '%' + @keyword + '%') OR (description LIKE '%' + @keyword + '%')";
         try
         {
             conn.Open();
