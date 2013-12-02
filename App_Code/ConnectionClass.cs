@@ -16,7 +16,7 @@ public static class ConnectionClass
     static ConnectionClass()
     {
         string connectionString = ConfigurationManager.ConnectionStrings["productConnection"].ToString() + ";MultipleActiveResultSets=True";
-        Debug.WriteLine(connectionString);
+       
         conn = new SqlConnection(connectionString);
         command = new SqlCommand("", conn);
     }
@@ -347,6 +347,39 @@ public static class ConnectionClass
     #endregion
 
     #region Users
+
+    public static String  UpdatePassword(String email,string password)
+    { int col=-1;
+        try
+        {
+            string query = "Update Product.dbo.user set password=@user_password WHERE email=@user_email ";
+            command = new SqlCommand(query, conn);
+            conn.Open();
+            command.Parameters.Add("@user_password", password);
+            command.Parameters.Add("@user_email", email);
+             col = command.ExecuteNonQuery();
+
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex);
+        }
+        finally
+        {
+            if (conn.State == ConnectionState.Open)
+                conn.Close();
+        }
+
+        if (col == -1)
+        {
+            return "Update password failed";
+        }
+
+        return "Password update successfuly";
+       
+
+    }
+
     public static User LoginUser(string email, string password)
     {
         //Check if user exists
