@@ -293,31 +293,6 @@ public static class ConnectionClass
         }
     }
 
-    public static bool isInWishList(int productId, int userId)
-    {
-        try
-        {
-            command.CommandText = "Select COUNT (*) From ProductDB.dbo.wishlist where productID=@product_id AND userID=@user_id";
-            conn.Open();
-            command.Parameters.Clear();
-            command.Parameters.Add(new SqlParameter("@product_id", productId));
-            command.Parameters.Add(new SqlParameter("@user_id", userId));
-            int amount = (int)command.ExecuteScalar();
-            if (amount > 0)
-            {
-                return true;
-            }
-
-        }
-        finally
-        {
-            command.Parameters.Clear();
-            conn.Close();
-        }
-
-        return false;
-    }
-
     public static bool CheckWishList(int productId, int userId)
     {
         try
@@ -612,8 +587,6 @@ public static class ConnectionClass
     }
 
     #endregion
-
-
 
     #region Review
 
