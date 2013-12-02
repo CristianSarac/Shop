@@ -62,11 +62,7 @@
             <div id="navigation">
                 <ul id="nav">
                     <li><a id="A1" href="~/Pages/Home.aspx" runat="server">Home</a></li>
-                    <li><a href="#">Reviews</a>
-                        <ul>
-                            <li><a id="A2" href="~/Pages/Product.aspx" runat="server">Product</a></li>
-                        </ul>
-                    </li>
+                    
                     <li><a id="A3" href="~/Pages/Shop.aspx" runat="server">Shop</a></li>
                     <li><a id="A4" href="~/Pages/Contact.aspx" runat="server">Contact</a></li>
                     <li id="Login" runat="server">

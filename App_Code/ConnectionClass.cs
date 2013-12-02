@@ -485,7 +485,7 @@ public static class ConnectionClass
             conn.Close();
         }
     }
-
+    // To do Metoda asta nu e identica cu cea de jos 
     public static bool searchUser(String email)
     {
         string query = "SELECT COUNT(*) FROM users WHERE email = @email";
