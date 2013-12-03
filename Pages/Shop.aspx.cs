@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Text;
 using System.Web.UI.WebControls;
-using Entities;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -19,9 +18,9 @@ namespace Pages
         {
             if (Session["user_id"] != null)
             {
+                
                  user_id = (int)Session["user_id"];
             }
-            
 
             if (!IsPostBack)
             {
@@ -53,6 +52,18 @@ namespace Pages
                 Typeddl.DataBind();
                 Sizeddl.DataSource = ConnectionClass.GetProductSizes();
                 Sizeddl.DataBind();
+
+                if (Session["login"] == null)
+                {
+                    foreach (RepeaterItem item in repeater.Items)
+                    {
+                        if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                        {
+                            Button btnAdd = (Button)item.FindControl("btnAddToWishlist") as Button;
+                            btnAdd.Visible = false;    
+                        }
+                    }
+                }
             }
 
             foreach (RepeaterItem item in repeater.Items)
@@ -62,13 +73,10 @@ namespace Pages
                     Label labelId = (Label)item.FindControl("lblId");
                     Label lbllWishListAdd = (Label)item.FindControl("lblWishList");
                     Debug.WriteLine(labelId.Text);
-                    if (ConnectionClass.isInWishList(Int32.Parse(labelId.Text), user_id))
+                    if (ConnectionClass.CheckWishList(Int32.Parse(labelId.Text), user_id) && Session["login"] != null)
                     {
                         lbllWishListAdd.Visible = true;
-                    }
-                    
-                    
-                    
+                    }          
                 }
             }
 
@@ -139,16 +147,10 @@ namespace Pages
             }
         }
         
-        idWish.Visible = true;
-        
-             ConnectionClass.AddToWishlist(toBeAdded,user_id);
-               
-             
-            
+        idWish.Visible = true; 
+        ConnectionClass.AddToWishlist(toBeAdded,user_id);
+                      
 	}
-
-       
-
 
         //Check if user is logged in
         private void Authenticate()

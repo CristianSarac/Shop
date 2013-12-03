@@ -46,6 +46,7 @@ namespace Pages
                 ConnectionClass.LoginUser(user.Name, user.Password);
                 Session["login"] = user.Name;
                 Session["type"] = user.Type;
+                Session["user_id"] = user.Id;
 
             }
 
@@ -68,14 +69,12 @@ namespace Pages
             data.Close();
             reader.Close();
 
+
             return retirnedJson;
         }
 
         private string GetGoogleUserJSON(string access_token)
         {
-
-
-
 
             string url = "";
             url = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + access_token;
@@ -88,13 +87,7 @@ namespace Pages
             data.Close();
             reader.Close();
 
-
-
-
             return retirnedJson;
-
-
-
         }
     }
 

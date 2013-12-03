@@ -4,9 +4,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    
-   
-
     <asp:Panel ID="pnlProducts" runat="server">
         <h1><asp:Label ID="lblTitle" runat="server" Text="Filter through our products" Visible="True"></asp:Label></h1>
         <asp:Label ID="lblCategory" runat="server" Text="Category: " />

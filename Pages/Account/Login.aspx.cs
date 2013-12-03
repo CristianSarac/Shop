@@ -24,7 +24,7 @@ public partial class Pages_Account_Login : System.Web.UI.Page
             Session["user_id"] = user.Id;
             Session["email"] = user.Email;
 
-            Response.Redirect("~/Pages/Home.aspx");
+           Response.Redirect("~/Pages/Home.aspx");
         }
         else
         {

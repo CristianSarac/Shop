@@ -5,7 +5,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using Entities;
 using System.Diagnostics;
 
 public static class ConnectionClass
@@ -79,15 +78,13 @@ public static class ConnectionClass
     public static List<Product> GetProductsByKeyword(string keyword)
     {
         List<Product> list = new List<Product>();
-
-        string query = "SELECT * FROM products WHERE name LIKE '%@keyword%' OR artist LIKE '%@keyword%' OR type LIKE '%@keyword%' OR description LIKE '%@keyword%' ";
+        string query = "SELECT * FROM products WHERE (name LIKE '%'+ @keyword +'%') OR (artist LIKE '%' + @keyword + '%') OR (type LIKE '%' + @keyword + '%') OR (description LIKE '%' + @keyword + '%')";
 
         try
         {
             conn.Open();
-
             command.CommandText = query;
-            command.Parameters.Add(new SqlParameter("@keyword",keyword));
+            command.Parameters.Add(new SqlParameter("@keyword",  keyword));
             SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -294,31 +291,6 @@ public static class ConnectionClass
         }
     }
 
-    public static bool isInWishList(int productId, int userId)
-    {
-        try
-        {
-            command.CommandText = "Select COUNT (*) From ProductDB.dbo.wishlist where productID=@product_id AND userID=@user_id";
-            conn.Open();
-            command.Parameters.Clear();
-            command.Parameters.Add(new SqlParameter("@product_id", productId));
-            command.Parameters.Add(new SqlParameter("@user_id", userId));
-            int amount = (int)command.ExecuteScalar();
-            if (amount > 0)
-            {
-                return true;
-            }
-
-        }
-        finally
-        {
-            command.Parameters.Clear();
-            conn.Close();
-        }
-
-        return false;
-    }
-
     public static bool CheckWishList(int productId, int userId)
     {
         try
@@ -512,7 +484,7 @@ public static class ConnectionClass
             conn.Close();
         }
     }
-
+    // To do Metoda asta nu e identica cu cea de jos 
     public static bool searchUser(String email)
     {
         string query = "SELECT COUNT(*) FROM users WHERE email = @email";
@@ -613,8 +585,6 @@ public static class ConnectionClass
     }
 
     #endregion
-
-
 
     #region Review
 

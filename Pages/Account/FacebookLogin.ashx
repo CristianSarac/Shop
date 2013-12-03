@@ -13,7 +13,7 @@ public class FacebookLogin : IHttpHandler, System.Web.SessionState.IRequiresSess
         var accessToken = context.Request["accessToken"];
         context.Session["AccessToken"] = accessToken;
         registerWithFacebook(context);
-        context.Response.Redirect("~/Pages/Home.aspx");
+       context.Response.Redirect("~/Pages/Home.aspx");
         
     }
  
@@ -46,6 +46,7 @@ public class FacebookLogin : IHttpHandler, System.Web.SessionState.IRequiresSess
         ConnectionClass.LoginUser(user.Name, user.Password);
         context.Session["login"] = user.Name;
         context.Session["type"] = user.Type;
+        context.Session["user_id"] = user.Id;
 
 
     }

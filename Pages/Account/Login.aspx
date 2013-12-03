@@ -6,7 +6,7 @@
         function onSignInCallback(authResult) {
             if (authResult['access_token']) {
                 // The user is signed in
-                var loc = '/Shop/Pages/Home.aspx?accessToken=' + authResult['access_token'];
+                var loc = '/Pages/Home.aspx?accessToken=' + authResult['access_token'];
                 window.location.href = loc;
             } else if (authResult['error']) {
                 // There was an error, which means the user is not signed in.
@@ -36,8 +36,8 @@
         window.fbAsyncInit = function () {
             FB.init({
                 appId: '668264679884232', // App ID
-                status: true, // check login status
-                cookie: true, // enable cookies to allow the server to access the session
+                status: false, // check login status
+                cookie: false, // enable cookies to allow the server to access the session
                 xfbml: true  // parse XFBML
             });
 
