@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 public partial class Pages_Account_PassReset : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -14,7 +15,7 @@ public partial class Pages_Account_PassReset : System.Web.UI.Page
 
 
     protected void btnSubmit_Click(object sender, EventArgs e)
-    {
+    {       
        lblError.Text= ConnectionClass.UpdatePassword(Request.QueryString["email"].ToString(), tbxPassu1.Text);
        lblError.Visible = true;
     }
