@@ -139,6 +139,10 @@ public static class ConnectionClass
                 list.Add(product);
             }
         }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Error retrieving all products: " +ex.Message);
+        }
         finally
         {
             conn.Close();
@@ -477,6 +481,11 @@ public static class ConnectionClass
                 //User exists
                 return "A user with this email already exists";
             }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Error registering user: " + ex.Message);
+            return null;
         }
         finally
         {

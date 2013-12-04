@@ -35,8 +35,6 @@ namespace Pages
                     Debug.WriteLine("Nu lam gasit");
                     user = new User(oUser.name, "rand0mPassWord", oUser.email, "user");
                     ConnectionClass.RegisterUser(user);
-
-
                 }
                 else
                 {

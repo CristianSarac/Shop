@@ -59,8 +59,6 @@ public partial class Pages_Product_description : System.Web.UI.Page
 
     protected void Rating_Changed(object sender, RatingEventArgs e)
     {
-
-        
         int rating = 0;
         rating = Int32.Parse(e.Value);
         Session["review_rating"] = rating;
