@@ -30,6 +30,7 @@ namespace Pages
             Sizeddl.DataBind();
             Sizeddl.Items.Insert(0, new ListItem("Size"));
             Sizeddl.SelectedIndex = 0;
+            listView.DataSource = null;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -38,7 +39,6 @@ namespace Pages
             {
                 user_id = (int)Session["user_id"];
             }
-
             if (Session["search"] != null)
             {
                 string keyword = Session["search"] as string;
@@ -51,9 +51,16 @@ namespace Pages
                 Typeddl.Visible = false;
                 lblSize.Visible = false;
                 Sizeddl.Visible = false;
+
+                if (Session["login"] == null)
+                {
+                    setButtonWishVisible(listView);
+                }
+                RefreshView(listView);
             }
             else
             {
+
                 listOfProducts = ConnectionClass.GetAllProducts();
                 listView.DataSource = listOfProducts;
                 listView.DataBind();
@@ -63,7 +70,6 @@ namespace Pages
                 }
                 RefreshView(listView);
             }
-
 
             if (size != null)
             {
@@ -99,6 +105,10 @@ namespace Pages
             listView.DataSource = productsBySize;
             listView.DataBind();
             RefreshView(listView);
+            if (Session["login"] == null)
+            {
+                setButtonWishVisible(listView);
+            }
         }
 
         protected void listView_ItemCommand(object sender, ListViewCommandEventArgs e)
