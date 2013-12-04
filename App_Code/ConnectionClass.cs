@@ -49,6 +49,7 @@ public static class ConnectionClass
         return list;
     }
 
+    
     public static ArrayList GetProductSizes()
     {
         ArrayList list = new ArrayList();
