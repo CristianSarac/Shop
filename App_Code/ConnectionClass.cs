@@ -330,7 +330,7 @@ public static class ConnectionClass
         int col=-1;
         try
         {
-            string query = "Update Product.dbo.users set password=@user_password WHERE email=@user_email ";
+            string query = "Update users set password=@user_password WHERE email=@user_email ";
             command = new SqlCommand(query, conn);
             command.Parameters.Clear();
             conn.Open();
@@ -363,7 +363,7 @@ public static class ConnectionClass
     public static User LoginUser(string email, string password)
     {
         //Check if user exists
-        string query = "SELECT COUNT(*) FROM ProductDB.dbo.users WHERE email = @email";
+        string query = "SELECT COUNT(*) FROM users WHERE email = @email";
         command.CommandText = query;
 
         try
@@ -694,9 +694,5 @@ public static class ConnectionClass
     }
 
     #endregion
-
-
-
-
 
 }
