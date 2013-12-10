@@ -325,16 +325,18 @@ public static class ConnectionClass
 
     #region Users
 
-    public static String  UpdatePassword(String email,string password)
-    { int col=-1;
+    public static String UpdatePassword(String email,string password)
+    { 
+        int col=-1;
         try
         {
-            string query = "Update Product.dbo.user set password=@user_password WHERE email=@user_email ";
+            string query = "Update Product.dbo.users set password=@user_password WHERE email=@user_email ";
             command = new SqlCommand(query, conn);
+            command.Parameters.Clear();
             conn.Open();
             command.Parameters.Add("@user_password", password);
             command.Parameters.Add("@user_email", email);
-             col = command.ExecuteNonQuery();
+            col = command.ExecuteNonQuery();
 
         }
         catch (Exception ex)
@@ -343,6 +345,7 @@ public static class ConnectionClass
         }
         finally
         {
+            command.Parameters.Clear();
             if (conn.State == ConnectionState.Open)
                 conn.Close();
         }
@@ -351,7 +354,7 @@ public static class ConnectionClass
         {
             return "Update password failed";
         }
-
+       
         return "Password update successfuly";
        
 
@@ -464,7 +467,6 @@ public static class ConnectionClass
             int amountOfUsers = (int)command.ExecuteScalar();
             if (amountOfUsers < 1)
             {
-                Debug.WriteLine("Un singur user cu emailul " + user.Email);
                 //User does not exist, create a new user
                 query = "INSERT INTO users VALUES (@name, @password, @email, @type)";
 

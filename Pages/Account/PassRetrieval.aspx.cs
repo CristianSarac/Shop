@@ -19,7 +19,7 @@ public partial class Pages_Account_PassRetrieval : System.Web.UI.Page
         String userEmail = tbxEmail.Text;
         if (Session["email"] == userEmail)
         {
-            lblEror.Text = "You are allready loged in ! ";
+            lblEror.Text = "You are already loged in ! ";
             tbxEmail.Text = "";
         }
         else

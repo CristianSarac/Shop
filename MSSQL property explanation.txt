@@ -1,0 +1,250 @@
+1. The N in front of strings provides Unicode support,meaning:
+
+Dragos with "sh" romanesc will surely appear as Dragosh as opposed to Drago?
+
+==========================================================================================================
+
+2. ALTER DATABASE [ProductDB] SET COMPATIBILITY_LEVEL = 100 
+
+This makes the database "behave" like the older version.Versions are as follows:
+
+                     -90 = SQL Server 2005
+
+                     -100 = SQL Server 2008 and SQL Server 2008 R2
+
+                     -110 = SQL Server 2012
+
+Some new features are also supported by old versions.
+
+==========================================================================================================
+
+3. IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [ProductDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+
+
+Checks to see if FULLTEXTSERVICE is enabled. This is used for FulltextSearches.
+FullTextSearches are user for making FullTextQueries which come in the form of:
+
+
+The following example finds all products with a price of $80.99 that contain the word "Mountain".
+
+USE ExampleDatabase
+GO
+
+SELECT Name, ListPrice
+FROM Production.Product
+WHERE ListPrice = 80.99
+   AND CONTAINS(Name, 'Mountain')
+GO
+
+==========================================================================================================
+
+4. ALTER DATABASE [ProductDB] SET ANSI_NULL_DEFAULT OFF 
+
+Does not allow null values within the database.
+
+==========================================================================================================
+
+5. ALTER DATABASE [ProductDB] SET ANSI_NULLS OFF 
+
+When SET ANSI_NULLS is OFF, the Equals (=) and Not Equal To (<>) comparison operators do not follow the ISO standard. A SELECT statement that uses WHERE column_name = NULL returns the rows that have null values in column_name. A SELECT statement that uses WHERE column_name <> NULL returns the rows that have nonnull values in the column. Also, a SELECT statement that uses WHERE column_name <> XYZ_value returns all rows that are not XYZ_value and that are not NULL.
+
+==========================================================================================================
+
+6. ALTER DATABASE [ProductDB] SET ANSI_PADDING OFF
+
+When padded, char columns are padded with blanks, and binary columns are padded with zeros. When trimmed, char columns have the trailing blanks trimmed, and binary columns have the trailing zeros trimmed.
+
+Since they PADDING is off,they are trimmed.
+
+==========================================================================================================
+
+7. ALTER DATABASE [ProductDB] SET ANSI_WARNINGS OFF 
+
+When set to ON, if null values appear in aggregate functions, such as SUM, AVG, MAX, MIN, STDEV, STDEVP, VAR, VARP, or COUNT, a warning message is generated. When set to OFF, no warning is issued.
+
+==========================================================================================================
+
+8. ALTER DATABASE [ProductDB] SET ARITHABORT OFF
+
+One concern is division by 0. Different reactions and warnings when turned on or off. 
+
+Client applications setting ARITHABORT to OFF can receive different query plans making it difficult to troubleshoot poorly performing queries. That is, the same query can execute fast in management studio but slow in the application. 
+
+If SET ARITHABORT is set to OFF and an abort error occurs during the evaluation of the Boolean condition of an IF statement, the FALSE branch will be executed.
+
+==========================================================================================================
+
+9. ALTER DATABASE [ProductDB] SET AUTO_CLOSE OFF 
+
+ When AUTO_CLOSE is set ON, this option can cause performance degradation on frequently accessed databases because of the increased overhead of opening and closing the database after each connection. AUTO_CLOSE also flushes the procedure cache after each connection.
+
+If a database is accessed frequently, set the AUTO_CLOSE option to OFF for the database.
+
+==========================================================================================================
+
+10. ALTER DATABASE [ProductDB] SET AUTO_CREATE_STATISTICS ON 
+
+The query optimizer uses statistics to create query plans that improve query performance. For most queries, the query optimizer already generates the necessary statistics for a high quality query plan; in a few cases, you need to create additional statistics or modify the query design for best results.
+
+In short, good to be ON.
+
+==========================================================================================================
+
+11. ALTER DATABASE [ProductDB] SET AUTO_SHRINK OFF 
+
+Frequently shrinking and expanding a database can lead to physical fragmentation.
+
+Set the AUTO_SHRINK database option to OFF. If you know that the space that you are reclaiming will not be needed in the future, you can reclaim the space by manually shrinking the database.
+
+==========================================================================================================
+
+12. ALTER DATABASE [ProductDB] SET AUTO_UPDATE_STATISTICS ON 
+
+Good to be ON, for performance reasons.
+
+==========================================================================================================
+
+13. ALTER DATABASE [ProductDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+
+When SET CURSOR_CLOSE_ON_COMMIT is OFF, a ROLLBACK statement closes only open asynchronous cursors that are not fully populated. STATIC or INSENSITIVE cursors that were opened after modifications were made will no longer reflect the state of the data if the modifications are rolled back.
+
+==========================================================================================================
+
+14. ALTER DATABASE [ProductDB] SET CURSOR_DEFAULT  GLOBAL 
+
+the only thing that having your cursor declared global does is allow a trigger or stored proc to reference a cursor that was not declared in that procedure or trigger.
+
+Since we are not using stored procedures or triggers, I say we leave this option out.
+
+==========================================================================================================
+
+15. ALTER DATABASE [ProductDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+
+When SET CONCAT_NULL_YIELDS_NULL is ON, concatenating a null value with a string yields a NULL result. For example, SELECT 'abc' + NULL yields NULL. When SET CONCAT_NULL_YIELDS_NULL is OFF, concatenating a null value with a string yields the string itself (the null value is treated as an empty string). For example, SELECT 'abc' + NULL yields abc.
+
+==========================================================================================================
+
+16. ALTER DATABASE [ProductDB] SET NUMERIC_ROUNDABORT OFF
+
+When SET NUMERIC_ROUNDABORT is ON, an error is generated after a loss of precision occurs in an expression. When OFF, losses of precision do not generate error messages and the result is rounded to the precision of the column or variable storing the result.
+
+Loss of precision occurs when an attempt is made to store a value with a fixed precision in a column or variable with less precision.
+
+==========================================================================================================
+
+17. ALTER DATABASE [ProductDB] SET QUOTED_IDENTIFIER OFF 
+
+When SET QUOTED_IDENTIFIER is OFF, literal strings in expressions can be delimited by single or double quotation marks. If a literal string is delimited by double quotation marks, the string can contain embedded single quotation marks, such as apostrophes.
+
+==========================================================================================================
+
+18. ALTER DATABASE [ProductDB] SET RECURSIVE_TRIGGERS OFF 
+
+ON: Recursive firing of AFTER triggers is allowed.
+
+OFF: Only direct recursive firing of AFTER triggers is not allowed. To also disable indirect recursion of AFTER triggers, set the nested triggers server option to 0 by using sp_configure
+
+==========================================================================================================
+
+19. ALTER DATABASE [ProductDB] SET  DISABLE_BROKER 
+
+SQL Server Service Broker provides native support for messaging and queuing applications in the SQL Server Database Engine. This makes it easier for developers to create sophisticated applications that use the Database Engine components to communicate between disparate databases. Developers can use Service Broker to easily build distributed and reliable applications.
+
+==========================================================================================================
+
+20. ALTER DATABASE [ProductDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
