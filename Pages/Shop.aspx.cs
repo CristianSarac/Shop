@@ -28,8 +28,10 @@ namespace Pages
             Typeddl.DataBind();
             Sizeddl.DataSource = ConnectionClass.GetProductSizes();
             Sizeddl.DataBind();
-            Sizeddl.Items.Insert(0, new ListItem("Size"));
+            Sizeddl.Items.Insert(0, new ListItem("All Sizes"));
+            Typeddl.Items.Insert(0, new ListItem("All Categories"));
             Sizeddl.SelectedIndex = 0;
+            Typeddl.SelectedIndex = 0;
             listView.DataSource = null;
         }
 
@@ -79,16 +81,25 @@ namespace Pages
         protected void Typeddl_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<Product> productsByType = new List<Product>();
+            List<string> productSizes = new List<string>();
 
             foreach (Product p in listOfProducts)
             {
                 if (p.Type == Typeddl.SelectedValue)
                 {
                     productsByType.Add(p);
+
                 }
             }
             listView.DataSource = productsByType;
             listView.DataBind();
+            RefreshView(listView);
+            if (Session["login"] == null)
+            {
+                setButtonWishVisible(listView);
+            }
+
+           
 
 
         }
