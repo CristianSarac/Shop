@@ -19,7 +19,7 @@ public partial class Pages_Account_PassRetrieval : System.Web.UI.Page
         String userEmail = tbxEmail.Text;
         if (Session["email"] == userEmail)
         {
-            lblEror.Text = "You are already loged in ! ";
+            lblError.Text = "You are already logged in ! ";
             tbxEmail.Text = "";
         }
         else
@@ -48,21 +48,21 @@ public partial class Pages_Account_PassRetrieval : System.Web.UI.Page
                     mail.IsBodyHtml = true;
                     mailclient.Send(mail);
 
-                    lblEror.Text = "Link has been sent to your email address";
+                    lblError.Text = "Link has been sent to your email address";
                 }
 
                 catch (Exception ex)
                 {
                     // if there will be any error created at the time of the sending mail then it goes inside the catch
                     //and display the error in the label
-                    lblEror.Text = ex.Message;
+                    lblError.Text = ex.Message;
                 }
 
 
             }
             else
             {
-                lblEror.Text = "Email not found in our database";
+                lblError.Text = "Email was not found in our database";
             }
 
         }

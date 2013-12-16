@@ -7,42 +7,37 @@
    
     <div class="clearfix">
         <img id="Img3" runat="server" src="~/Images/product1.png" class="imgLeft" />
-        <h3>Title 1</h3>
+        <h3>Impressing the impresionism current</h3>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lectus urna,
-        viverra in luctus quis, ullamcorper quis lorem. Vestibulum vulputate pellentesque
-        velit, et placerat dolor pulvinar in. Class aptent taciti sociosqu ad litora torquent
-        per conubia nostra, per inceptos himenaeos. Sed sit amet velit at purus elementum
-        dapibus. Nulla dapibus auctor vulputate. Sed cursus nisi at mauris mollis semper.
-        Vestibulum consectetur cursus dui sit amet pretium.
+            After the Abstract Expressionists stretched the properties of 
+            painting to their limits, countless waves of new movements responded 
+            to and expanded their ideas. Artists such as Frank Stella and 
+            Ellsworth Kelly continued to experiment with color, but moved 
+            away from the concept of paint as the star of a work and toward 
+            a less gestural, more “hard-edged” form, the artist uses hard colors 
+            as a reply to impresionism.
         </p>
     </div>
     <div class="clearfix">
         <img id="Img2" runat="server" src="~/Images/product2.png" class="imgLeft" />
-        <h3>Title 2</h3>
+        <h3>50 Shades of Grey</h3>
         <p>
-            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-        himenaeos. Donec porttitor placerat nunc a consectetur. Ut fermentum eleifend molestie.
-        Donec fermentum risus sit amet ante cursus cursus. In hac habitasse platea dictumst.
-        Praesent semper ante ut felis molestie aliquet. Nam quis dui a magna molestie blandit
-        id et justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-        per inceptos himenaeos. Sed felis mauris, mattis a vulputate a, gravida nec metus.
-        Vivamus elit augue, ullamcorper eget scelerisque vitae, tincidunt eget lorem. Curabitur
-        id nibh libero, sed pulvinar nisi. Curabitur ultrices, neque in dignissim viverra,
-        justo nisl dignissim magna, a tempor eros turpis in diam. Suspendisse potenti. Sed
-        tincidunt est ac elit bibendum nec varius ante vestibulum.
+            This piece of art is easy recognisable given it's "flooding" lines, which
+            flow to the ends of the Earth, dranting dynamism. Embarking on the ideea
+            that plastic art and architecture are eminently abstract, our artist manifests,
+            with an eliberaring sensation, his whole emotional burden.
         </p>
     </div>
     <div class="clearfix">
         <img id="Img1" runat="server" src="~/Images/product3.png" class="imgLeft" />
-        <h3>Title 3</h3>
+        <h3>Stirring the imaginative soul</h3>
         <p>
-            In hac habitasse platea dictumst. In purus leo, consequat nec porta a, varius sed
-        dui. Nulla placerat mollis tincidunt. Praesent at elit mi, a posuere quam. Suspendisse
-        vel leo eu orci lacinia vestibulum. Fusce vel sem fermentum lectus tempus ultrices.
-        Morbi arcu sem, rhoncus sit amet rutrum eget, interdum sit amet leo. Ut mattis lorem
-        vitae dolor tincidunt mattis a lacinia velit. Cras sed nibh at urna imperdiet laoreet
-        quis a risus.
+            Nowadays,in the 21st century, some instruments alike the computer, 
+            were added to the inception of abstract art, thus leading to the 
+            flourishment of digital art. This painting uses different figurative 
+            elements, in order to create images and stimulate the spectators imagination. 
+            It cannot be verbally defined. It creates a physical impression, bringing warmth, 
+            or contrariwise, coldness in the eyes and soul of the observer.
         </p>
     </div>
 </asp:Content>

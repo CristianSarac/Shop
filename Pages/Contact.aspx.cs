@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -54,7 +55,9 @@ public partial class Pages_Contact : System.Web.UI.Page
             Comments.Text = "";
 
         }
-        catch (Exception) { }
+        catch (Exception ex) {
+            Debug.WriteLine(ex.ToString());
+        }
     }
 
 
