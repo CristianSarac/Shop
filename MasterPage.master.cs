@@ -1,9 +1,6 @@
 ﻿using System;
-
 using System.Diagnostics;
 using System.Web.UI;
-
-
 
 
 
@@ -45,7 +42,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             Session.Clear();
             Session.Abandon();
             Session.RemoveAll();
-           // Response.Redirect("~/Pages/Home.aspx");
         }
 
     }   
@@ -56,11 +52,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
         Session["search"] = tbxSearch.Text;
         Response.Redirect("~/Pages/Shop.aspx");
- 
 
     }
-
-
 
     protected void btnWishlist_Click(object sender, EventArgs e)
     {
